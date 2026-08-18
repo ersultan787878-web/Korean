@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>안녕! — Путь к корейскому языку · 1000 уроков</title>
+<title>안녕! — Путь к корейскому языку · 1000 уроков + AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Rubik:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-/* ============ БАЗА И ТЕМЫ ============ */
 :root{
   --fd:'Unbounded','Noto Sans KR',sans-serif;
   --fb:'Rubik','Noto Sans KR',sans-serif;
@@ -29,13 +28,11 @@ input,select{font-family:inherit;color:inherit}
 ::selection{background:var(--gold);color:#23262f}
 .hidden{display:none!important}
 
-/* фон: плавающий хангыль */
 #fx{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 #fx span{position:absolute;font-family:'Noto Sans KR';font-weight:900;opacity:.05;animation:drift linear infinite;user-select:none}
 [data-theme="dark"] #fx span{opacity:.08;color:#8fa2ff}
 @keyframes drift{from{transform:translateY(108vh) rotate(-8deg)}to{transform:translateY(-18vh) rotate(10deg)}}
 
-/* каркас */
 #app{position:relative;z-index:1;display:flex;min-height:100vh}
 #side{width:238px;flex-shrink:0;padding:18px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;background:var(--card);border-right:2px solid var(--line);overflow-y:auto}
 .logo{display:flex;align-items:center;gap:10px;padding:6px 8px 16px}
@@ -60,7 +57,6 @@ input,select{font-family:inherit;color:inherit}
 #view{padding:22px 26px 90px;max-width:1080px;width:100%;margin:0 auto;animation:vin .35s ease}
 @keyframes vin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-/* компоненты */
 .card{background:var(--card);border:2px solid var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--sh);padding:20px;position:relative;overflow:hidden}
 .card.pad-s{padding:14px 16px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--line);border-radius:14px;padding:12px 20px;font-weight:800;font-size:15px;background:var(--card);box-shadow:0 4px 0 var(--sh);transition:.14s;user-select:none;text-decoration:none}
@@ -94,7 +90,12 @@ h2.sec{font-family:var(--fd);font-size:19px;margin:26px 0 12px;display:flex;alig
 .mut{color:var(--mut)}
 .center{text-align:center}
 
-/* карта уроков */
+.audiobox{display:flex;align-items:center;gap:12px;justify-content:center;margin:16px 0;flex-wrap:wrap}
+.audiobox .a-replay{width:52px;height:52px;font-size:20px}
+.avol{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:800;border:2px solid var(--line);border-radius:12px;padding:9px 12px;background:var(--soft)}
+.avol input{width:90px}
+.aprog{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;font-weight:700;margin:12px 0;border:2px dashed var(--mut);border-radius:12px;padding:10px 12px}
+
 .stage{border:2px solid var(--line);border-radius:18px;background:var(--card);box-shadow:5px 5px 0 var(--sh);margin-bottom:16px;overflow:hidden}
 .stage .hd{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;color:#fff;user-select:none}
 .stage .hd .em{font-size:26px}
@@ -115,7 +116,6 @@ h2.sec{font-family:var(--fd);font-size:19px;margin:26px 0 12px;display:flex;alig
 .lnode.lock{opacity:.45;cursor:not-allowed;border-style:dashed}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(237,164,21,.55)}50%{box-shadow:0 0 0 9px transparent}}
 
-/* плеер урока */
 #lesson-wrap{max-width:760px;margin:0 auto}
 .lhead{display:flex;align-items:center;gap:12px;margin-bottom:6px}
 .lhead .x{width:40px;height:40px;border-radius:12px;border:2px solid var(--line);background:var(--card);font-size:16px;box-shadow:0 3px 0 var(--sh);flex-shrink:0}
@@ -151,8 +151,9 @@ h2.sec{font-family:var(--fd);font-size:19px;margin:26px 0 12px;display:flex;alig
 .combo{color:var(--orange);font-weight:900;font-size:13px;white-space:nowrap}
 .conf{position:fixed;top:-14px;width:10px;height:16px;z-index:98;animation:fall linear forwards;pointer-events:none}
 @keyframes fall{to{transform:translateY(106vh) rotate(720deg)}}
+.ainp-ok{border-color:var(--green)!important;box-shadow:0 0 0 3px rgba(31,158,87,.3)!important}
+.ainp-no{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(225,75,59,.3)!important}
 
-/* аутентификация */
 .authwrap{min-height:100vh;display:grid;place-items:center;padding:24px;position:relative;z-index:1}
 .acard{width:100%;max-width:480px;border:2px solid var(--line);border-radius:24px;background:var(--card);box-shadow:8px 8px 0 var(--sh);padding:34px 30px;animation:vin .4s}
 .acard .big{font-family:'Noto Sans KR';font-weight:900;font-size:36px}
@@ -166,7 +167,6 @@ h2.sec{font-family:var(--fd);font-size:19px;margin:26px 0 12px;display:flex;alig
 .notice{border:2px dashed var(--mut);border-radius:13px;padding:10px 13px;font-size:12.5px;color:var(--mut);font-weight:600;margin-top:14px}
 .err{color:var(--red);font-weight:700;font-size:13.5px;margin-top:9px;min-height:17px}
 
-/* нижняя навигация (мобайл) */
 #bnav{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--card);border-top:2px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom));justify-content:space-around}
 #bnav button{flex:1;background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:800;color:var(--mut);padding:5px 2px;border-radius:12px}
 #bnav button.act{color:var(--ink);background:var(--soft)}
@@ -176,7 +176,7 @@ body.in-lesson #bnav{display:none!important}
 .toast{border:2px solid var(--line);background:var(--ink);color:var(--card);border-radius:14px;padding:10px 18px;font-weight:800;font-size:14px;box-shadow:0 4px 0 var(--sh);animation:tin .3s;max-width:92vw}
 [data-theme="dark"] .toast{background:#f1f2f6;color:#14161d}
 @keyframes tin{from{transform:translateY(-24px);opacity:0}}
-.wrow{display:flex;align-items:center;gap:12px;border:2px solid var(--line);border-radius:14px;background:var(--card);padding:11px 14px;margin-bottom:9px;transition:.15s;flex-wrap:wrap}
+.wrow{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:14px;background:var(--card);padding:11px 14px;margin-bottom:9px;transition:.15s;flex-wrap:wrap}
 .wrow:hover{transform:translateX(4px)}
 .dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--line);flex-shrink:0}
 .dot.g{background:var(--green)}.dot.y{background:var(--gold)}.dot.r{background:var(--red)}
@@ -201,6 +201,32 @@ body.in-lesson #bnav{display:none!important}
 .avatar{width:86px;height:86px;border-radius:26px;border:2px solid var(--line);box-shadow:4px 4px 0 var(--sh);display:grid;place-items:center;font-family:var(--fd);font-weight:900;font-size:36px;color:#fff;transform:rotate(-3deg);flex-shrink:0}
 .finale{font-family:var(--fd)}
 .finale .huge{font-size:clamp(24px,5vw,40px);font-weight:900;line-height:1.15}
+
+/* ---------- AI помощник ---------- */
+#ai-fab{position:fixed;right:18px;bottom:calc(22px + env(safe-area-inset-bottom));z-index:70;width:58px;height:58px;border-radius:20px;border:2px solid var(--line);background:var(--pink);color:#fff;font-size:26px;box-shadow:0 5px 0 var(--sh);transition:.15s}
+#ai-fab:hover{transform:translateY(-3px) rotate(-4deg)}
+@media(max-width:920px){#ai-fab{bottom:calc(78px + env(safe-area-inset-bottom))}}
+body.in-lesson #ai-fab{display:none}
+#ai-panel{position:fixed;right:16px;bottom:calc(88px + env(safe-area-inset-bottom));z-index:80;width:min(440px,calc(100vw - 24px));max-height:min(72vh,640px);display:flex;flex-direction:column;background:var(--card);border:2px solid var(--line);border-radius:20px;box-shadow:8px 8px 0 var(--sh);overflow:hidden;animation:vin .25s}
+@media(max-width:920px){#ai-panel{right:12px;left:12px;bottom:calc(72px + env(safe-area-inset-bottom));width:auto}}
+.ai-hd{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--pink);color:#fff;border-bottom:2px solid var(--line)}
+.ai-hd .icobtn{width:32px;height:32px;font-size:14px;background:rgba(255,255,255,.22);border-color:rgba(0,0,0,.4);box-shadow:none;color:#fff}
+#ai-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;min-height:180px;background:var(--bg)}
+.ai-msg{max-width:88%;padding:10px 13px;border-radius:14px;border:2px solid var(--line);font-size:14px;font-weight:500;line-height:1.45;overflow-wrap:anywhere}
+.ai-msg.user{align-self:flex-end;background:#dceaff;border-color:var(--blue)}
+.ai-msg.bot{align-self:flex-start;background:var(--card)}
+[data-theme="dark"] .ai-msg.user{background:#1d3055;color:#eaf1ff}
+.ai-note{font-size:13px;color:var(--mut);font-weight:600;border:2px dashed var(--mut);border-radius:12px;padding:10px}
+.ai-typing span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mut);margin-right:4px;animation:bl 1s infinite}
+.ai-typing span:nth-child(2){animation-delay:.2s}.ai-typing span:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,100%{opacity:.25}50%{opacity:1}}
+.ai-chips{display:flex;gap:6px;flex-wrap:wrap;padding:8px 12px;border-top:2px solid var(--soft)}
+.ai-chip{border:2px solid var(--line);border-radius:999px;background:var(--soft);font-size:11.5px;font-weight:700;padding:5px 10px}
+.ai-chip:hover{background:var(--card);transform:translateY(-1px)}
+.ai-in{display:flex;gap:8px;padding:10px 12px;border-top:2px solid var(--line)}
+.ai-in .btn{padding:10px 16px}
+.ai-in .inp{flex:1;padding:10px 13px}
+
 @media(max-width:920px){
   #side{display:none}
   #bnav{display:flex}
@@ -249,14 +275,29 @@ body.in-lesson #bnav{display:none!important}
   </nav>
 </div>
 
+<!-- AI помощник -->
+<button id="ai-fab" class="hidden" title="AI-помощник">🤖</button>
+<div id="ai-panel" class="hidden">
+  <div class="ai-hd"><b style="font-family:var(--fd);font-size:14px">🤖 AI-помощник</b>
+    <div style="display:flex;gap:6px">
+      <button class="icobtn" id="ai-clear" title="Очистить историю">🗑️</button>
+      <button class="icobtn" id="ai-close" title="Закрыть">✕</button>
+    </div></div>
+  <div id="ai-msgs"></div>
+  <div class="ai-chips" id="ai-chips"></div>
+  <div class="ai-in"><input class="inp" id="ai-input" placeholder="Спроси о корейском…" autocomplete="off"><button class="btn red" id="ai-send">➤</button></div>
+</div>
+
 <div id="toasts"></div>
 <div id="fb-root"></div>
 
 <script>
 "use strict";
 /* ============================================================
-   АННЁН! — локальный тренажёр корейского языка (1000 уроков)
-   Один файл. Без сервера. Всё хранится в localStorage.
+   АННЁН! — тренажёр корейского (1000 уроков) + AI-помощник
+   Аудио: Web Speech API (ko-KR/ja-JP/en-US), без ключей.
+   AI: OpenAI-совместимый API или Google Gemini. Ключ хранится
+   ТОЛЬКО в localStorage браузера пользователя.
    ============================================================ */
 
 /* ---------- утилиты ---------- */
@@ -265,6 +306,8 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 const fmt=n=>Math.round(n).toLocaleString('ru-RU');
 function rng32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function shuf(r,a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function shuffleArr(a){return shuf(Math.random,a)}
+const shuffle=shuffleArr;
 function todayStr(){return new Date().toISOString().slice(0,10)}
 function daysBetween(a,b){return Math.round((new Date(b)-new Date(a))/864e5)}
 function fmtTime(s){const h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?h+' ч '+m+' мин':(m?m+' мин':s+' сек')}
@@ -277,7 +320,6 @@ const N=(k,r,ru,c,f)=>W.push({k,r,ru,c,f:f||''});
 const V=(k,r,ru,yo,fm,pa)=>W.push({k,r,ru,c:'act',f:'v',yo,fm,pa});
 const A=(k,r,ru,yo)=>W.push({k,r,ru,c:'qal',f:'a',yo});
 
-/* база */
 N('안녕하세요','annyeonghaseyo','Здравствуйте','bas');
 N('안녕','annyeong','Привет / пока','bas');
 N('감사합니다','gamsahamnida','Спасибо (вежливо)','bas');
@@ -299,7 +341,6 @@ N('말','mal','Слово, речь','bas');
 N('사람','saram','Человек','bas','h');
 N('문화','munhwa','Культура','thn');
 N('물론','mullon','Конечно','bas');
-/* семья */
 N('가족','gajok','Семья','fam');
 N('아버지','abeoji','Отец','fam','h');
 N('어머니','eomeoni','Мать','fam','h');
@@ -318,7 +359,6 @@ N('부모님','bumonim','Родители','fam','h');
 N('삼촌','samchon','Дядя','fam','h');
 N('이모','imo','Тётя','fam','h');
 N('사촌','sachon','Двоюродный брат/сестра','fam','h');
-/* числа */
 N('일','il','Один; день','num');
 N('이','i','Два','num');
 N('삼','sam','Три','num');
@@ -337,7 +377,6 @@ N('반','ban','Половина','num');
 N('개','gae','Счётное слово для предметов','num');
 N('번','beon','Номер, раз','num');
 N('살','sal','Возраст (лет)','num');
-/* еда и напитки */
 N('밥','bap','Рис; еда','food','e');
 N('빵','ppang','Хлеб','food','e');
 N('고기','gogi','Мясо','food','e');
@@ -372,7 +411,6 @@ N('차','cha','Чай','food','ed');
 N('주스','juseu','Сок','food','ed');
 N('맥주','maekju','Пиво','food','ed');
 N('와인','wain','Вино','food','ed');
-/* цвета */
 N('색','saek','Цвет','col');
 N('빨간색','ppalgansaek','Красный цвет','col');
 N('파란색','paransaek','Синий цвет','col');
@@ -384,7 +422,6 @@ N('흰색','hwinsaek','Белый цвет','col');
 N('검은색','geomeunsaek','Чёрный цвет','col');
 N('회색','hwesaek','Серый цвет','col');
 N('갈색','galsaek','Коричневый цвет','col');
-/* животные */
 N('동물','dongmul','Животное','ani');
 N('개','gae','Собака','ani');
 N('고양이','goyangi','Кошка','ani');
@@ -405,7 +442,6 @@ N('뱀','baem','Змея','ani');
 N('개구리','gaeguri','Лягушка','ani');
 N('거북이','geobugi','Черепаха','ani');
 N('벌레','beolle','Жук, насекомое','ani');
-/* места */
 N('집','jip','Дом','plc','p');
 N('학교','hakgyo','Школа','plc','p');
 N('회사','hoesa','Компания, офис','plc','p');
@@ -436,7 +472,6 @@ N('호텔','hotel','Отель','plc','p');
 N('박물관','bangmulgwan','Музей','plc','p');
 N('사무실','samusil','Офис (помещение)','plc','p');
 N('공장','gongjang','Завод','plc','p');
-/* люди */
 N('학생','haksaeng','Ученик, студент','ppl','h');
 N('선생님','seonsaengnim','Учитель','ppl','h');
 N('교수님','gyosunim','Профессор','ppl','h');
@@ -458,7 +493,6 @@ N('남자','namja','Мужчина','ppl','h');
 N('여자','yeoja','Женщина','ppl','h');
 N('친구','chingu','Друг','ppl','h');
 N('분','bun','Человек (вежливо)','ppl','h');
-/* тело */
 N('몸','mom','Тело','body');
 N('머리','meori','Голова; волосы','body');
 N('얼굴','eolgul','Лицо','body');
@@ -476,7 +510,6 @@ N('어깨','eokkae','Плечо','body');
 N('피부','pibu','Кожа','body');
 N('심장','simjang','Сердце (орган)','body');
 N('건강','geongang','Здоровье','body');
-/* одежда */
 N('옷','ot','Одежда','clo');
 N('바지','baji','Штаны','clo');
 N('치마','chima','Юбка','clo');
@@ -495,7 +528,6 @@ N('가방','gabang','Сумка','clo');
 N('지갑','jigeop','Кошелёк','clo');
 N('우산','usan','Зонт','clo');
 N('반지','banji','Кольцо','clo');
-/* время */
 N('시간','sigan','Время; час','time');
 N('오늘','oneul','Сегодня','time','t');
 N('내일','naeil','Завтра','time','t');
@@ -527,7 +559,6 @@ N('목요일','mogyoil','Четверг','time','t');
 N('금요일','geumyoil','Пятница','time','t');
 N('토요일','toyoil','Суббота','time','t');
 N('일요일','iryoil','Воскресенье','time','t');
-/* погода */
 N('날씨','nalssi','Погода','wea');
 N('비','bi','Дождь','wea');
 N('눈','nun','Снег','wea');
@@ -536,7 +567,6 @@ N('구름','gureum','Облако','wea');
 N('안개','angae','Туман','wea');
 N('태풍','taepung','Тайфун','wea');
 N('무지개','mujigae','Радуга','wea');
-/* дом */
 N('방','bang','Комната','home','p');
 N('거실','geosil','Гостиная','home','p');
 N('부엌','bueok','Кухня','home','p');
@@ -562,7 +592,6 @@ N('전화','jeonhwa','Телефон; звонок','home');
 N('열쇠','yeolsoe','Ключ','home');
 N('불','bul','Огонь; свет','home');
 N('물건','mulgeon','Вещь','home');
-/* учёба */
 N('책','chaek','Книга','sch');
 N('공책','gongchaek','Тетрадь','sch');
 N('연필','yeonpil','Карандаш','sch');
@@ -584,7 +613,6 @@ N('과목','gwamok','Предмет','sch');
 N('역사','yeoksa','История','sch');
 N('수학','suhak','Математика','sch');
 N('과학','gwahak','Наука','sch');
-/* транспорт */
 N('버스','beoseu','Автобус','trn');
 N('지하철','jihacheol','Метро','trn','p');
 N('택시','taeksi','Такси','trn');
@@ -599,7 +627,6 @@ N('지도','jido','Карта','trn');
 N('신호등','sinhodeung','Светофор','trn');
 N('교통','gyotong','Транспорт, движение','trn');
 N('운전','unjeon','Вождение','trn');
-/* природа */
 N('나무','namu','Дерево','nat');
 N('꽃','kkot','Цветок','nat');
 N('풀','pul','Трава','nat');
@@ -614,7 +641,6 @@ N('가을','gaeul','Осень','time');
 N('겨울','gyeoul','Зима','time');
 N('환경','hwangyeong','Окружающая среда','nat');
 N('자연','jayeon','Природа','nat');
-/* хобби */
 N('취미','chwimi','Хобби','hob');
 N('음악','eumak','Музыка','hob');
 N('노래','norae','Песня','hob');
@@ -636,7 +662,6 @@ N('독서','dokseo','Чтение','hob');
 N('피아노','piano','Пианино','hob');
 N('기타','gita','Гитара','hob');
 N('요리','yori','Готовка','hob');
-/* эмоции и мысли */
 N('기분','gibun','Настроение','emo');
 N('마음','maeum','Сердце, душа','emo');
 N('사랑','sarang','Любовь','emo');
@@ -650,7 +675,6 @@ N('희망','huimang','Надежда','emo');
 N('용기','yonggi','Смелость','emo');
 N('기억','gieok','Воспоминание','emo');
 N('생각','saenggak','Мысль','emo');
-/* работа и деньги */
 N('일','il','Работа','wrk');
 N('직업','jigeop','Профессия','wrk');
 N('월급','weolgeup','Зарплата','wrk');
@@ -672,7 +696,6 @@ N('가격','gagyeok','Цена','wrk');
 N('돈','don','Деньги','wrk');
 N('할인','harin','Скидка','wrk');
 N('영수증','yeongsujeong','Чек','wrk');
-/* разное */
 N('선물','seonmul','Подарок','thn');
 N('편지','pyeonji','Письмо','thn');
 N('종이','jongi','Бумага','thn');
@@ -699,7 +722,6 @@ N('기술','gisul','Технология; навык','thn');
 N('교육','gyoyuk','Образование','thn');
 N('미래','mirae','Будущее','thn');
 N('과거','geogeo','Прошлое','thn');
-/* вопросы */
 N('뭐','mwo','Что','que');
 N('누구','nugu','Кто','que','h');
 N('어디','eodi','Где, куда','que','p');
@@ -710,7 +732,6 @@ N('얼마','eolma','Сколько (цена)','que');
 N('몇','myeot','Сколько (число), который','que');
 N('무슨','museun','Какой, что за','que');
 N('어느','eoneu','Который из','que');
-/* глаголы */
 V('가다','gada','Идти, ехать','가요','갑니다','갔어요');
 V('오다','oda','Приходить','와요','옵니다','왔어요');
 V('보다','boda','Смотреть, видеть','봐요','봅니다','봤어요');
@@ -782,7 +803,6 @@ V('소개하다','sogaehada','Представлять, знакомить','소
 V('인사하다','insahada','Здороваться','인사해요','인사합니다','인사했어요');
 V('산책하다','sancaekhada','Гулять','산책해요','산책합니다','산책했어요');
 V('걱정하다','geokjeonghada','Беспокоиться','걱정해요','걱정합니다','걱정했어요');
-/* прилагательные */
 A('좋다','jota','Хороший','좋아요');
 A('나쁘다','napeuda','Плохой','나빠요');
 A('크다','keuda','Большой','커요');
@@ -895,18 +915,18 @@ const PH=[
 ['실수해도 괜찮아요','silsuhaedo gwaenchanayo','Ошибаться — это нормально',3],
 ['노력하지 않으면 성공할 수 없어요','noryeokhaji aneumyeon seonggonghal su eopseoyo','Без усилий не будет успеха',4],
 ['시작이 반이다','sijagi banida','Начало — уже половина дела',4],
-['김칫국부터 마시지 마세요','gimchitgukbuteo masiji maseyo','Не пей кимчи-суп раньше времени (не забегай вперёд)',4],
-['티끌 모아 태산','teukkeul moa taesan','Пылинка к пылинке — гора (копейка рубль бережёт)',4],
+['김칫국부터 마시지 마세요','gimchitgukbuteo masiji maseyo','Не пей кимчи-суп раньше времени',4],
+['티끌 모아 태산','teukkeul moa taesan','Пылинка к пылинке — гора',4],
 ['원숭이도 나무에서 떨어진다','wonsungido namueseo tteoreojinda','И обезьяна падает с дерева',4],
 ['소 잃고 외양간 고친다','so ilko oeyanggan gochinda','Чинить загон, потеряв корову',4],
 ['고생 끝에 낙이 온다','gosaeng kkeute nagi onda','После трудностей приходит радость',4],
 ['비 온 뒤에 땅이 굳어진다','bi on dwie ttangi guyeojinda','После дождя земля твердеет',4],
-['눈이 높다','nuni nopda','Быть привередливым (высокие глаза)',4],
-['발이 넓다','bari neolpda','Иметь много связей (широкие ноги)',4],
-['귀가 얇다','gwiga talpda','Быть легковерным (тонкие уши)',4],
-['손이 크다','soni keuda','Быть щедрым (большие руки)',4],
-['입이 무겁다','ibi mugeopda','Уметь хранить секреты (тяжёлый рот)',4],
-['발등에 불이 떨어지다','baldeunge buri tteoreojida','Быть в цейтноте (огонь на ступнях)',4],
+['눈이 높다','nuni nopda','Быть привередливым',4],
+['발이 넓다','bari neolpda','Иметь много связей',4],
+['귀가 얇다','gwiga talpda','Быть легковерным',4],
+['손이 크다','soni keuda','Быть щедрым',4],
+['입이 무겁다','ibi mugeopda','Уметь хранить секреты',4],
+['발등에 불이 떨어지다','baldeunge buri tteoreojida','Быть в цейтноте',4],
 ['늦었다고 생각할 때가 가장 빠른 때다','neujeotdago saenggakhal ttaega gajang ppareun ttaeda','Когда кажется, что поздно — самое время начать',4],
 ['말보다 행동이 중요해요','malboda haengdongi jungyohaeyo','Дела важнее слов',4],
 ['건강이 최고예요','geongangi choegoyeyo','Здоровье — превыше всего',4],
@@ -937,9 +957,9 @@ const G=[
 ['와/과','«И, вместе с»',2,'친구와 같이 가요','chingugwa gachi gayo','Иду вместе с другом'],
 ['안','Отрицание «не»',2,'안 먹어요','an meogeoyo','Не ем'],
 ['못','«Не могу, не удаётся»',2,'못 가요','mot gayo','Не могу пойти'],
-['-지 않다','Отрицание (письм. стиль)',2,'먹지 않아요','meokji anayo','Не ем'],
-['-고 싶다','«Хочется сделать»',2,'가고 싶어요','gago sipeoyo','Хочу пойти'],
-['-아/어 주세요','«Сделайте, пожалуйста»',2,'도와주세요','dowajuseyo','Помогите, пожалуйста'],
+['- 지 않다','Отрицание (письм. стиль)',2,'먹지 않아요','meokji anayo','Не ем'],
+['- 고 싶다','«Хочется сделать»',2,'가고 싶어요','gago sipeoyo','Хочу пойти'],
+['- 아/어 주세요','«Сделайте, пожалуйста»',2,'도와주세요','dowajuseyo','Помогите, пожалуйста'],
 ['-았/었어요','Прошедшее время',2,'어제 갔어요','eoje gasseoyo','Вчера ходил'],
 ['-(으)ㄹ 거예요','Будущее время / намерение',2,'내일 갈 거예요','naeil gal geoyeyo','Завтра пойду'],
 ['-(으)세요','Вежливое повеление',2,'여기 앉으세요','yeogi anjeuseyo','Садитесь здесь'],
@@ -988,7 +1008,7 @@ const G=[
 ['-(으)ㄴ/는 셈이다','«Считай что…»',6,'다 끝낸 셈이에요','da kkeunnaen semieyo','Считай, всё закончил'],
 ['-기 마련이다','«Так уж устроено, неизбежно»',6,'사람은 실수하기 마련이에요','sarameun silsuhagi maryeunieyo','Человеку свойственно ошибаться'],
 ['-(으)ㄴ/는다고 해서','«То, что…, не значит»',6,'비싸다고 해서 다 좋은 건 아니에요','bissadago haeseo da joeun geon anieyo','Дорого — не всегда хорошо'],
-['-(으)ㄴ/는 법이다','«Таков закон вещей»',6,'좋은 날도 나쁜 날도 있는 법이에요','joeun naldo nabeun naldo inneun beobieyo','Бывают и хорошие, и плохие дни — так устроено'],
+['-(으)ㄴ/는 법이다','«Таков закон вещей»',6,'좋은 날도 나쁜 날도 있는 법이에요','joeun naldo nabeun naldo inneun beobieyo','Бывают и хорошие, и плохие дни'],
 ['-아/어 봤자','«Хоть и сделаешь — толку нет»',7,'물어봤자 소용없어요','mureobwatja soyongeopseoyo','Спрашивать бесполезно'],
 ['-(으)ㄹ 따름이다','«Всего лишь…» (письм.)',7,'저는 최선을 다할 따름입니다','jeoneun choeseoneul dahal ttareuimnida','Я всего лишь делаю всё возможное'],
 ['-(으)ㄴ/는 데에 있어서','«В том, что касается…» (письм.)',7,'성공하는 데에 있어서 노력이 중요합니다','seonggonghaneun dee issoseo noryeogi jungyohamnida','Для успеха важны усилия'],
@@ -1005,7 +1025,7 @@ const LET=[
 const HANGUL_LESSONS=[['ㅏ','ㅓ','ㅗ','ㅜ','ㅡ','ㅣ'],['ㅑ','ㅕ','ㅛ','ㅠ'],['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ'],['ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ']];
 const HANGUL_TITLES=['Корейский алфавит — Хангыль','Гласные','Согласные','Первые слоги'];
 
-/* ---------- этапы и темы ---------- */
+/* ---------- этапы ---------- */
 const STG=[
 {kr:'완전 초보',ru:'Абсолютный новичок',a:1,b:100,c:'#3aa655',e:'🌱'},
 {kr:'초급',ru:'Начальный',a:101,b:250,c:'#2f6fe0',e:'📘'},
@@ -1063,16 +1083,78 @@ function lessonTitle(n){
   return topic+' · ч.'+(Math.floor((n-s.a)/(5*topics.length))+1);
 }
 
+/* ---------- АУДИО: Web Speech API ---------- */
+let VOICES=[], VOICE_MISSING_SHOWN={};
+function refreshVoices(){
+  if(!('speechSynthesis' in window))return;
+  try{VOICES=speechSynthesis.getVoices()||[]}catch(e){VOICES=[]}
+}
+if('speechSynthesis' in window){refreshVoices();speechSynthesis.onvoiceschanged=refreshVoices;}
+function pickVoiceFor(lang){
+  if(!VOICES.length)refreshVoices();
+  const exact=VOICES.filter(v=>v.lang===lang);
+  if(exact.length)return exact[0];
+  const base=String(lang).split('-')[0];
+  const near=VOICES.filter(v=>v.lang&&String(v.lang).toLowerCase().startsWith(base.toLowerCase()));
+  if(near.length)return near[0];
+  return null;
+}
+function hasVoice(lang){return !!pickVoiceFor(lang)}
+function speak(text,lang,rate){
+  lang=lang||'ko-KR';
+  if(!text)return false;
+  if(!('speechSynthesis' in window)){toast('Браузер не поддерживает озвучку речи','⚠️');return false;}
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;
+    const v=pickVoiceFor(lang);
+    if(v)u.voice=v;
+    else if(!VOICE_MISSING_SHOWN[lang]){VOICE_MISSING_SHOWN[lang]=1;
+      toast('Голос '+lang+' не найден в системе — использую ближайший доступный','ℹ️');}
+    u.rate=rate||(S&&S.set.rate)||0.9;
+    u.volume=(S&&typeof S.set.vol==='number')?S.set.vol:1;
+    u.onerror=function(){toast('Не удалось воспроизвести звук','⚠️');};
+    speechSynthesis.speak(u);
+    return true;
+  }catch(e){toast('Ошибка воспроизведения звука','⚠️');return false;}
+}
+function speakKorean(text){return speak(text,'ko-KR')}
+function playTaskAudio(t){
+  if(!t||!t.audio)return;
+  if(S){ensureAudioStats();S.audio.listens++;saveProgress();}
+  speak(t.audio.text,t.audio.lang||'ko-KR');
+}
+function audioBlockHTML(){
+  const vol=(S&&typeof S.set.vol==='number')?S.set.vol:1;
+  return '<div class="audiobox">'+
+    '<button class="btn blue big a-play" type="button">▶️ Прослушать</button>'+
+    '<button class="icobtn a-replay" type="button" title="Прослушать ещё раз">🔁</button>'+
+    '<label class="avol">🔊<input type="range" class="a-vol" min="0" max="1" step="0.1" value="'+vol+'"></label>'+
+  '</div>';
+}
+function bindAudioBlock(root,t){
+  const p=root.querySelector('.a-play'),r=root.querySelector('.a-replay'),v=root.querySelector('.a-vol');
+  if(p)p.onclick=function(){sfx('click');playTaskAudio(t);};
+  if(r)r.onclick=function(){sfx('click');playTaskAudio(t);};
+  if(v)v.oninput=function(e){if(S){S.set.vol=+e.target.value;saveProgress();}};
+}
+
 /* ---------- состояние ---------- */
-let USERS={}, S=null, L=null, koVoice=null, actx=null, CURV='';
+let USERS={}, S=null, L=null, CURV='';
 const LSK_USERS='annon_users', LSK_SES='annon_session', saveKey=n=>'annon_save_'+String(n).toLowerCase();
+const AI_DEFAULT={provider:'openai',url:'https://api.openai.com/v1/chat/completions',model:'gpt-4o-mini',key:''};
 function defaultState(name){
   return {name,levelChoice:0,placed:false,currentLesson:1,completed:{},xp:0,streak:0,best:0,freezes:0,lastDay:'',
-  words:{},ach:{},set:{theme:'light',sound:true,rom:'auto',rate:0.9},
+  words:{},ach:{},set:{theme:'light',sound:true,rom:'auto',rate:0.9,vol:1},audio:null,
+  ai:Object.assign({},AI_DEFAULT),aiHist:[],
   st:{ans:0,ok:0,miss:0,time:0,xpH:{},cat:{},perfect:0,maxCombo:0},created:Date.now()};
 }
+function normalizeState(d){if(!d.set)d.set={};if(typeof d.set.vol!=='number')d.set.vol=1;
+  if(typeof d.set.rate!=='number')d.set.rate=0.9;if(!d.set.rom)d.set.rom='auto';
+  if(!d.ai)d.ai=Object.assign({},AI_DEFAULT);if(!d.aiHist)d.aiHist=[];return d;}
 function saveProgress(){if(S)localStorage.setItem(saveKey(S.name),JSON.stringify(S))}
-function loadProgress(name){try{const d=JSON.parse(localStorage.getItem(saveKey(name)));if(d&&d.name)return d}catch(e){}return null}
+function loadProgress(name){try{const d=JSON.parse(localStorage.getItem(saveKey(name)));if(d&&d.name)return normalizeState(d)}catch(e){}return null}
 function loadUsers(){try{USERS=JSON.parse(localStorage.getItem(LSK_USERS))||{}}catch(e){USERS={}}if(!USERS||typeof USERS!=='object')USERS={}}
 function saveUsers(){localStorage.setItem(LSK_USERS,JSON.stringify(USERS))}
 async function hashPass(p,salt){
@@ -1081,9 +1163,11 @@ async function hashPass(p,salt){
   catch(e){let h=5381;const s=salt+'::'+p;for(let i=0;i<s.length;i++)h=(h*33^s.charCodeAt(i))|0;return 'x'+(h>>>0).toString(16);}
 }
 
-/* ---------- звук ---------- */
+/* ---------- короткие сигналы ---------- */
+let actx=null;
 function ensureAC(){if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(actx&&actx.state==='suspended')actx.resume();return actx}
-function tone(f,d,type='sine',t0=0,vol=.12){if(!S||!S.set.sound)return;if(!ensureAC())return;
+function tone(f,d,type,t0,vol){type=type||'sine';t0=t0||0;vol=vol||.12;
+  if(!S||!S.set.sound)return;if(!ensureAC())return;
   const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=f;const t=actx.currentTime+t0;
   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d);
   o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+d+.05);}
@@ -1093,21 +1177,13 @@ function sfx(k){if(!S||!S.set.sound)return;
   else if(k==='win'){[523,659,784,1047].forEach((f,i)=>tone(f,.18,'sine',i*.11));}
   else if(k==='click'){tone(500,.05,'triangle',0,.05);}
 }
-function speakKorean(text,rate){
-  if(!('speechSynthesis' in window)||!text)return false;
-  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ko-KR';
-  if(koVoice)u.voice=koVoice;u.rate=rate||(S?S.set.rate:0.9)||0.9;speechSynthesis.speak(u);return true;}catch(e){return false;}
-}
-function pickVoice(){if(!('speechSynthesis' in window))return;const vs=speechSynthesis.getVoices();
-  koVoice=vs.find(v=>v.lang==='ko-KR')||vs.find(v=>v.lang&&v.lang.startsWith('ko'))||null;}
-if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=pickVoice;pickVoice();}
 
 /* ---------- ui-мелочи ---------- */
 function toast(msg,icon){const d=document.createElement('div');d.className='toast';d.textContent=(icon?icon+' ':'')+msg;
   $('#toasts').appendChild(d);setTimeout(()=>{d.style.opacity='0';d.style.transition='.4s';setTimeout(()=>d.remove(),400)},2600);}
 function floatXP(n){const d=document.createElement('div');d.className='xpfly';d.textContent='+'+n+' XP';
   d.style.left=(window.innerWidth/2-40+Math.random()*80)+'px';d.style.top='110px';document.body.appendChild(d);setTimeout(()=>d.remove(),1100);}
-function confetti(n=70){const cols=['#e14b3b','#2f6fe0','#1f9e57','#eda415','#c2388f','#0d9e8f'];
+function confetti(n){n=n||70;const cols=['#e14b3b','#2f6fe0','#1f9e57','#eda415','#c2388f','#0d9e8f'];
   for(let i=0;i<n;i++){const c=document.createElement('div');c.className='conf';c.style.left=Math.random()*100+'vw';
   c.style.background=cols[i%cols.length];c.style.animationDuration=(2+Math.random()*2)+'s';c.style.animationDelay=(Math.random()*.7)+'s';
   document.body.appendChild(c);setTimeout(()=>c.remove(),4500);}}
@@ -1139,6 +1215,98 @@ function recordAnswer(ref,ok){if(!S||!ref)return;
     else{w.bad++;w.box=Math.max(0,w.box-1);w.due=Date.now()+10*60e3;}}
   updateStreak();}
 
+/* ---------- статистика аудио ---------- */
+function ensureAudioStats(){if(!S)return;
+  if(!S.audio)S.audio={date:'',done:0,ok:0,bad:0,listens:0,streak:0,best:0,learned:{}};
+  const t=todayStr();
+  if(S.audio.date!==t){S.audio.date=t;S.audio.done=0;S.audio.ok=0;S.audio.bad=0;}}
+function recordAudioStats(ok,t){if(!S)return;ensureAudioStats();
+  S.audio.done++;
+  if(ok){S.audio.ok++;S.audio.streak++;S.audio.best=Math.max(S.audio.best,S.audio.streak);
+    if(t&&t.aq&&t.aq.word)S.audio.learned[t.aq.word]=1;}
+  else{S.audio.bad++;S.audio.streak=0;}
+  saveProgress();}
+
+/* ============================================================
+   AI-ПОМОЩНИК (OpenAI-совместимый API или Google Gemini)
+   Ключ хранится только в localStorage пользователя.
+   ============================================================ */
+function ensureAI(){if(!S)return;if(!S.ai)S.ai=Object.assign({},AI_DEFAULT);if(!S.aiHist)S.aiHist=[];}
+function aiSysPrompt(){ensureAI();const lv=levelInfo(S.xp);
+  return 'Ты — Аннёнг, дружелюбный и терпеливый преподаватель корейского языка в обучающем приложении «Аннён!». '+
+  'Пользователь изучает корейский язык. Отвечай по-русски, кратко и понятно (до 150 слов). '+
+  'Всегда приводи примеры на корейском с транскрипцией латиницей и переводом. '+
+  'Объясняй грамматику, частицы, спряжения, произношение, порядок слов и уровни вежливости. '+
+  'Если просят — составляй короткие упражнения. Поддерживай ученика и хвали за старание. '+
+  'Не выдумывай неверную грамматику: если не уверен, так и скажи. '+
+  'Данные ученика: имя '+S.name+', уровень '+lv.n+' ('+lv.name[1]+'), пройдено уроков '+Object.keys(S.completed).length+', выучено слов '+learnedWords()+'.';}
+async function callOpenAI(cfg,msgs){
+  const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),40000);
+  let r;
+  try{
+    r=await fetch(cfg.url,{method:'POST',signal:ctrl.signal,
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+cfg.key},
+      body:JSON.stringify({model:cfg.model,messages:msgs,temperature:0.6})});
+  }finally{clearTimeout(to);}
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error((j.error&&j.error.message)||('HTTP '+r.status));
+  const t=j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;
+  if(!t)throw new Error('Пустой ответ модели');
+  return String(t).trim();}
+async function callGemini(cfg,msgs){
+  const url='https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(cfg.model)+':generateContent?key='+encodeURIComponent(cfg.key);
+  const sys=msgs.find(m=>m.role==='system');
+  const rest=msgs.filter(m=>m.role!=='system');
+  const contents=rest.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}));
+  const body={contents};
+  if(sys)body.systemInstruction={parts:[{text:sys.content}]};
+  const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),40000);
+  let r;
+  try{
+    r=await fetch(url,{method:'POST',signal:ctrl.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  }finally{clearTimeout(to);}
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error((j.error&&j.error.message)||('HTTP '+r.status));
+  const c=j.candidates&&j.candidates[0];
+  const t=c&&c.content&&c.content.parts?c.content.parts.map(p=>p.text||'').join(''):'';
+  if(!t)throw new Error('Пустой ответ модели');
+  return String(t).trim();}
+async function aiComplete(question){
+  ensureAI();const cfg=S.ai;
+  const msgs=[{role:'system',content:aiSysPrompt()}].concat(S.aiHist.slice(-10),[{role:'user',content:question}]);
+  const fn=cfg.provider==='gemini'?callGemini:callOpenAI;
+  return fn(cfg,msgs);}
+function renderAIMsgs(){ensureAI();const box=$('#ai-msgs');if(!box)return;
+  let h='';
+  if(!S.aiHist.length)h='<div class="ai-note">안녕! Я AI-помощник по корейскому. Спроси меня о грамматике, словах, произношении или попроси упражнение. '+(S.ai.key?'':'⚠️ Чтобы я заговорил, добавь API-ключ: ⚙️ Настройки → «AI-помощник».')+'</div>';
+  S.aiHist.forEach(m=>{h+='<div class="ai-msg '+(m.role==='user'?'user':'bot')+'">'+esc(m.content).replace(/\n/g,'<br>')+'</div>';});
+  box.innerHTML=h;box.scrollTop=box.scrollHeight;}
+function openAIChat(){ensureAI();$('#ai-panel').classList.remove('hidden');renderAIMsgs();}
+function aiAsk(q){openAIChat();$('#ai-input').value=q;sendAI();}
+function typingBubble(){const box=$('#ai-msgs');const d=document.createElement('div');d.className='ai-msg bot ai-typing';d.id='ai-typing';d.innerHTML='<span></span><span></span><span></span>';box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
+function removeTyping(d){if(d&&d.parentNode)d.parentNode.removeChild(d);}
+async function sendAI(){
+  const inp=$('#ai-input');const q=inp.value.trim();if(!q)return;ensureAI();
+  if(!S.ai.key){
+    inp.value='';
+    S.aiHist.push({role:'assistant',content:'Чтобы я заговорил, добавь API-ключ: ⚙️ Настройки → раздел «AI-помощник». Подойдёт ключ OpenAI, OpenRouter, Groq или Google Gemini. Ключ хранится только в этом браузере.'});
+    renderAIMsgs();saveProgress();return;}
+  inp.value='';
+  S.aiHist.push({role:'user',content:q});renderAIMsgs();
+  const tb=typingBubble();$('#ai-send').disabled=true;
+  try{
+    const ans=await aiComplete(q);
+    S.aiHist.push({role:'assistant',content:ans});
+    if(S.aiHist.length>20)S.aiHist=S.aiHist.slice(-20);
+  }catch(e){
+    let m='⚠️ Ошибка: '+e.message;
+    if(String(e.message).indexOf('HTTP 401')!==-1)m='⚠️ Неверный API-ключ (401). Проверь его в настройках.';
+    else if(String(e.message).indexOf('HTTP 429')!==-1)m='⚠️ Превышен лимит запросов (429). Попробуй чуть позже.';
+    else if(String(e.message).indexOf('abort')!==-1)m='⚠️ Модель не ответила вовремя. Попробуй ещё раз.';
+    else if(String(e.message)==='Failed to fetch')m='⚠️ Не удалось соединиться с API. Проверь интернет и адрес endpoint в настройках.';
+    S.aiHist.push({role:'assistant',content:m});}
+  removeTyping(tb);$('#ai-send').disabled=false;renderAIMsgs();saveProgress();}
+
 /* ---------- достижения ---------- */
 const ACH=[
 {id:'diag',em:'🧭',n:'Разведка',d:'Пройти определение уровня',c:()=>S.placed},
@@ -1159,6 +1327,7 @@ const ACH=[
 {id:'c20',em:'💯',n:'Комбо ×20',d:'20 верных ответов подряд',c:()=>S.st.maxCombo>=20},
 {id:'pf1',em:'✨',n:'Идеальный урок',d:'Пройти урок без ошибок',c:()=>S.st.perfect>=1},
 {id:'pf10',em:'✨',n:'10 идеальных',d:'10 уроков без ошибок',c:()=>S.st.perfect>=10},
+{id:'aud50',em:'🎧',n:'Аудио-профи',d:'50 верных аудио-ответов за всё время',c:()=>{ensureAudioStats();return S.audio.ok>=50}},
 {id:'st1',em:'🌱',n:'Этап 1 пройден',d:'Завершить уроки 1–100',c:()=>{for(let i=1;i<=100;i++)if(!S.completed[i])return false;return true}},
 {id:'course',em:'🏅',n:'Весь курс!',d:'Завершить все 1000 уроков',c:()=>!!S.completed[1000]},
 ];
@@ -1166,10 +1335,114 @@ function checkAchievements(){if(!S)return;let any=false;
   for(const a of ACH){if(!S.ach[a.id]&&a.c()){S.ach[a.id]=Date.now();any=true;toast('Достижение: '+a.n+'!','🏆');}}
   if(any){sfx('win');saveProgress();}}
 
+/* ---------- база аудио-заданий ---------- */
+const audioQuestions=[
+  {type:'listen-choice',word:'안녕하세요',translation:'Здравствуйте',audioText:'안녕하세요',lang:'ko-KR'},
+  {type:'listen-choice',word:'감사합니다',translation:'Спасибо',audioText:'감사합니다',lang:'ko-KR'},
+  {type:'listen-choice',word:'죄송합니다',translation:'Извините',audioText:'죄송합니다',lang:'ko-KR'},
+  {type:'listen-phrase-translate',word:'학교에 가요',translation:'Иду в школу',audioText:'학교에 가요',lang:'ko-KR'},
+  {type:'listen-phrase-translate',word:'물을 마셔요',translation:'Я пью воду',audioText:'물을 마셔요',lang:'ko-KR'},
+  {type:'listen-write',word:'학교',rom:'hakgyo',translation:'Школа',audioText:'학교',lang:'ko-KR'},
+  {type:'listen-write',word:'친구',rom:'chingu',translation:'Друг',audioText:'친구',lang:'ko-KR'}
+];
+let AUDIO_BANK=null;
+function buildAudioBank(){
+  const bank=audioQuestions.map((q,i)=>Object.assign({key:'custom'+i},q));
+  W.forEach((w,i)=>{
+    if(w.f==='v'||w.f==='a')return;
+    bank.push({type:'listen-choice',key:'c'+i,word:w.k,translation:w.ru,rom:w.r,audioText:w.k,lang:'ko-KR',src:'w'});
+    bank.push({type:'listen-translate',key:'ct'+i,word:w.k,translation:w.ru,rom:w.r,audioText:w.k,lang:'ko-KR',src:'w'});
+    bank.push({type:'listen-tf',key:'t'+i,word:w.k,translation:w.ru,rom:w.r,audioText:w.k,lang:'ko-KR',src:'w'});
+    if(w.k.length<=4)bank.push({type:'listen-write',key:'cw'+i,word:w.k,rom:w.r,translation:w.ru,audioText:w.k,lang:'ko-KR',src:'w'});
+  });
+  PH.forEach((p,i)=>{
+    bank.push({type:'listen-phrase-translate',key:'p'+i,word:p[0],translation:p[2],rom:p[1],audioText:p[0],lang:'ko-KR',src:'p'});
+    if(p[0].split(' ').length>=2)bank.push({type:'listen-build',key:'b'+i,word:p[0],translation:p[2],rom:p[1],audioText:p[0],lang:'ko-KR',src:'p'});
+  });
+  return bank;
+}
+function audioBank(){if(!AUDIO_BANK)AUDIO_BANK=buildAudioBank();return AUDIO_BANK}
+const RECENT_LIMIT=8;
+let recentQuestions=[];
+function qKey(q){return q.type+':'+q.key}
+function getRandomQuestion(filter){
+  const bank=audioBank().filter(q=>!filter||filter(q));
+  if(!bank.length)return null;
+  let pool=bank.filter(q=>recentQuestions.indexOf(qKey(q))===-1);
+  if(!pool.length){recentQuestions=[];pool=bank;}
+  const q=pool[Math.floor(Math.random()*pool.length)];
+  recentQuestions.push(qKey(q));
+  if(recentQuestions.length>RECENT_LIMIT)recentQuestions.shift();
+  return q;
+}
+function distrRu(q,n,rng){const out=[],seen={};seen[q.translation]=1;
+  const pool=q.src==='p'?PH.map(p=>p[2]):W.filter(w=>w.f==='').map(w=>w.ru);
+  let g=0;while(out.length<n&&g++<300){const x=pool[Math.floor(rng()*pool.length)];if(!seen[x]){seen[x]=1;out.push(x);}}
+  return out;}
+function distrKr(q,n,rng){const out=[],seen={};seen[q.word]=1;
+  const pool=q.src==='p'?PH.map(p=>p[0]):W.filter(w=>w.f==='').map(w=>w.k);
+  let g=0;while(out.length<n&&g++<300){const x=pool[Math.floor(rng()*pool.length)];if(!seen[x]){seen[x]=1;out.push(x);}}
+  return out;}
+function audioQuestionToTask(q,rng){
+  rng=rng||Math.random;
+  const base={audio:{text:q.audioText,lang:q.lang||'ko-KR'},aq:q};
+  if(q.options&&q.options.length){
+    const idx=q.correct||0;
+    const pairs=q.options.map((o,i)=>({o:o,ok:i===idx}));
+    const sp=shuf(rng,pairs);
+    return Object.assign({kind:'listen',q:'Прослушай и выбери правильный вариант',opts:sp.map(x=>x.o),ans:q.options[idx],
+      note:q.word+' — '+q.translation},base);
+  }
+  if(q.type==='listen-choice'){
+    const dis=distrKr(q,3,rng);
+    return Object.assign({kind:'listen',q:'🔊 Прослушай и выбери слово, которое прозвучало',
+      opts:shuf(rng,[q.word].concat(dis)),ans:q.word,kr:true,hint:q.rom||'',
+      note:'Прозвучало: '+q.word+(q.rom?' ['+q.rom+']':'')+' — '+q.translation},base);
+  }
+  if(q.type==='listen-translate'){
+    const dis=distrRu(q,3,rng);
+    return Object.assign({kind:'listen',q:'🔊 Прослушай и выбери перевод',
+      opts:shuf(rng,[q.translation].concat(dis)),ans:q.translation,hint:q.rom||'',
+      note:'«'+q.word+'» = '+q.translation},base);
+  }
+  if(q.type==='listen-phrase-translate'){
+    const dis=distrRu(q,3,rng);
+    return Object.assign({kind:'listen',q:'🔊 Прослушай фразу и выбери перевод',
+      opts:shuf(rng,[q.translation].concat(dis)),ans:q.translation,hint:q.rom||'',
+      note:'«'+q.word+'» = '+q.translation},base);
+  }
+  if(q.type==='listen-write'){
+    const acc=[String(q.word).toLowerCase()];
+    if(q.rom)acc.push(String(q.rom).toLowerCase());
+    return Object.assign({kind:'write',q:'🔊 Прослушай и напиши услышанное слово',
+      ans:q.word,ansArr:acc,hint:q.rom||'',
+      note:'Правильно: '+q.word+(q.rom?' ['+q.rom+']':'')+' — '+q.translation},base);
+  }
+  if(q.type==='listen-build'){
+    const tokens=String(q.word).split(' ');
+    return Object.assign({kind:'build',q:'🔊 Прослушай и собери фразу по порядку',
+      hint:q.translation,tokens:tokens,bank:shuf(rng,tokens.slice()),ans:tokens,
+      note:'Правильно: '+q.word+' — '+q.translation},base);
+  }
+  if(q.type==='listen-tf'){
+    const isTrue=rng()<.5;let t2=q.translation;
+    if(!isTrue){const alt=distrRu(q,1,rng)[0];if(alt)t2=alt;}
+    return Object.assign({kind:'tf',q:'🔊 Прослушай. Правда или ложь?',
+      stmt:q.word+' — это «'+t2+'»',ans:(t2===q.translation),
+      note:'«'+q.word+'» = '+q.translation},base);
+  }
+  return Object.assign({kind:'listen',q:'Прослушай',opts:[q.translation],ans:q.translation},base);
+}
+function itemToQ(it){
+  if(it.t==='w'){const w=W[it.i];return {type:'listen-choice',key:'w'+it.i,word:w.k,translation:w.ru,rom:w.r,audioText:w.k,lang:'ko-KR',src:'w'};}
+  const p=PH[it.i];return {type:'listen-phrase-translate',key:'p'+it.i,word:p[0],translation:p[2],rom:p[1],audioText:p[0],lang:'ko-KR',src:'p'};
+}
+
 /* ---------- роутер и каркас ---------- */
 const TITLES={home:'Главная',map:'Карта курса · 1000 уроков',words:'Мои слова',practice:'Практика',stats:'Статистика',ach:'Достижения',profile:'Профиль',settings:'Настройки'};
 function setShell(on){$('#side').classList.toggle('hidden',!on);$('#top').classList.toggle('hidden',!on);
-  if(window.innerWidth>920)$('#bnav').classList.toggle('hidden',!on);}
+  $('#bnav').classList.toggle('hidden',!on);$('#ai-fab').classList.toggle('hidden',!on);
+  if(!on)$('#ai-panel').classList.add('hidden');}
 function go(v){CURV=v;
   if(L){stopTimer();L=null;$('#fb-root').innerHTML='';}
   document.body.classList.remove('in-lesson');
@@ -1189,11 +1462,11 @@ function showWelcome(){setShell(false);
     '<div class="alogo">안</div>'+
     '<div class="big">안녕하세요! 👋</div>'+
     '<p style="margin:12px 0 4px;font-weight:600">Добро пожаловать в твой путь к корейскому языку.</p>'+
-    '<p class="mut" style="font-size:13.5px;margin-bottom:22px">1000 уроков · от хангыля до уровня носителя · полностью бесплатно и без лимитов</p>'+
+    '<p class="mut" style="font-size:13.5px;margin-bottom:22px">1000 уроков · AI-помощник · аудио · полностью бесплатно и без лимитов</p>'+
     (hasUsers
       ?'<button class="btn red big wide" id="w-login">С возвращением! Войти 👋</button><button class="btn ghost wide" style="margin-top:10px" id="w-new">Создать новый профиль</button>'
       :'<button class="btn red big wide" id="w-start">Начать обучение 🚀</button>')+
-    '<div class="notice">🔒 Данные хранятся локально на этом устройстве и в этом браузере. Интернет не нужен.</div>'+
+    '<div class="notice">🔒 Данные хранятся локально на этом устройстве и в этом браузере.</div>'+
   '</div></div>';
   const l=$('#w-login'),nw=$('#w-new'),st=$('#w-start');
   if(l)l.onclick=()=>showLogin();if(nw)nw.onclick=()=>showRegister();if(st)st.onclick=()=>showRegister();}
@@ -1206,7 +1479,6 @@ function showLogin(msg){setShell(false);
     '<div class="err" id="lg-err">'+(msg||'')+'</div>'+
     '<button class="btn red big wide" id="lg-go">Войти</button>'+
     '<button class="btn ghost wide" style="margin-top:10px" id="lg-back">← Назад</button>'+
-    '<div class="notice">Профиль хранится локально на этом устройстве.</div>'+
   '</div></div>';
   $('#lg-back').onclick=showWelcome;
   const doLogin=async()=>{const n=$('#lg-n').value.trim(),p=$('#lg-p').value;
@@ -1226,12 +1498,12 @@ function showRegister(){setShell(false);
     '<div class="err" id="rg-err"></div>'+
     '<button class="btn red big wide" id="rg-go">Создать профиль</button>'+
     '<button class="btn ghost wide" style="margin-top:10px" id="rg-back">← Назад</button>'+
-    '<div class="notice">🔒 Пароль хешируется (SHA-256) и хранится только на этом устройстве. Это не серверный аккаунт: данные нельзя восстановить на другом браузере.</div>'+
+    '<div class="notice">🔒 Пароль хешируется (SHA-256) и хранится только на этом устройстве.</div>'+
   '</div></div>';
   $('#rg-back').onclick=showWelcome;
   const doReg=async()=>{const n=$('#rg-n').value.trim(),p=$('#rg-p').value;
     if(n.length<2){$('#rg-err').textContent='Имя должно быть не короче 2 символов.';return;}
-    if(USERS[n.toLowerCase()]){$('#rg-err').textContent='Это имя уже занято на данном устройстве. Войди в профиль.';return;}
+    if(USERS[n.toLowerCase()]){$('#rg-err').textContent='Это имя уже занято на данном устройстве.';return;}
     if(p.length<4){$('#rg-err').textContent='Пароль должен быть не короче 4 символов.';return;}
     await registerUser(n,p);};
   $('#rg-go').onclick=doReg;
@@ -1269,10 +1541,10 @@ function diagQuestion(tier){
       const r=p.newItems[0];
       if(r.t==='w'){const rng=rng32(n*31+tier);const w0=W[r.i];
         const dis=distractors(r,rng,3).map(d=>W[d.i].ru);
-        return {q:'Что означает: '+w0.k+'?',opts:shuf(rng,[w0.ru,...dis]),ans:w0.ru};}
+        return {q:'Что означает: '+w0.k+'?',opts:shuf(rng,[w0.ru].concat(dis)),ans:w0.ru};}
       const rng=rng32(n*31+tier);const it=PH[r.i];const dis=[];
       for(let i=0;i<PH.length&&dis.length<3;i++){if(i!==r.i&&Math.abs(PH[i][3]-it[3])<=1)dis.push(PH[i][2]);}
-      return {q:'Что означает: '+it[0]+'?',opts:shuf(rng,[it[2],...dis.slice(0,3)]),ans:it[2]};
+      return {q:'Что означает: '+it[0]+'?',opts:shuf(rng,[it[2]].concat(dis)),ans:it[2]};
     }}
   return {q:'안녕하세요 означает…',opts:['Здравствуйте','Пока','Спасибо','Нет'],ans:'Здравствуйте'};}
 function startDiagnostic(){
@@ -1294,7 +1566,7 @@ function showDiagResult(){
     '<div style="font-size:52px">🧭</div>'+
     '<h2 style="font-family:var(--fd);margin:10px 0">Мы определили твою стартовую точку!</h2>'+
     '<p style="font-weight:600">Правильных ответов: <b>'+d.score+' из 10</b></p>'+
-    '<p style="margin:12px 0 20px">Тебе рекомендуется начать с <b>урока '+rec+'</b>.<br><span class="mut" style="font-size:13px">Все предыдущие уроки останутся доступны — сможешь пройти их в любой момент.</span></p>'+
+    '<p style="margin:12px 0 20px">Тебе рекомендуется начать с <b>урока '+rec+'</b>.<br><span class="mut" style="font-size:13px">Все предыдущие уроки останутся доступны.</span></p>'+
     '<button class="btn red big wide" id="d-rec">Начать с урока '+rec+' 🚀</button>'+
     '<button class="btn ghost wide" style="margin-top:10px" id="d-one">Нет, начать с урока 1</button>'+
   '</div></div>';
@@ -1303,25 +1575,25 @@ function showDiagResult(){
 function finishPlacement(rec){S.placed=true;S.currentLesson=Math.max(S.currentLesson,rec);saveProgress();
   checkAchievements();toast('Поехали! Урок '+rec,'🚀');go('home');}
 
-/* ---------- генератор заданий ---------- */
+/* ---------- генератор заданий урока ---------- */
 function romShown(n){if(!S)return true;return S.set.rom==='on'||(S.set.rom==='auto'&&n<=40)}
 function optCount(n){return n>750?4:3}
 function distractors(ref,rng,k){
-  const res=[],seen=new Set();
+  const res=[],seen={};
   if(ref.t==='w'){const w=W[ref.i];
     for(let i=0;i<W.length;i++){if(i===ref.i)continue;const c=W[i];
-      if((c.f===w.f&&w.f!=='')||c.c===w.c){res.push({t:'w',i});seen.add(i);if(res.length>=k*3)break;}}}
+      if((c.f===w.f&&w.f!=='')||c.c===w.c){res.push({t:'w',i});seen[i]=1;if(res.length>=k*3)break;}}}
   else if(ref.t==='p'){for(let i=0;i<PH.length;i++){if(i!==ref.i&&Math.abs(PH[i][3]-itemGet(ref)[3])<=1){res.push({t:'p',i});if(res.length>=k*3)break;}}}
   else{for(let i=0;i<G.length;i++){if(i!==ref.i)res.push({t:'g',i});if(res.length>=k*3)break;}}
-  let g=0;while(res.length<k&&g<400){const i=Math.floor(rng()*W.length);if(!seen.has(i)){seen.add(i);res.push({t:'w',i});}g++;}
+  let g=0;while(res.length<k&&g<400){const i=Math.floor(rng()*W.length);if(!seen[i]){seen[i]=1;res.push({t:'w',i});}g++;}
   return shuf(rng,res).slice(0,k);}
 function pickItem(rng,pool){
   let tot=0;const ws=pool.map(r=>{let w=1;if(r.t==='w'&&S&&S.words[r.i]){const d=S.words[r.i];if(d.bad>0)w+=3*d.bad/(d.ok+d.bad);}tot+=w;return w;});
   let x=rng()*tot;for(let i=0;i<pool.length;i++){x-=ws[i];if(x<=0)return pool[i];}return pool[pool.length-1];}
 function pastItems(n,rng,k){
-  const out=[],seen=new Set();
-  for(let m=Math.max(1,n-30);m<n;m++){for(const r of PLANS[m].newItems){if(!seen.has(r.t+r.i)){seen.add(r.t+r.i);out.push(r);}}}
-  if(S){for(const i of mistakeWords()){const key='w'+i;if(!seen.has(key)&&out.length<60){seen.add(key);out.push({t:'w',i});}}}
+  const out=[],seen={};
+  for(let m=Math.max(1,n-30);m<n;m++){for(const r of PLANS[m].newItems){if(!seen[r.t+r.i]){seen[r.t+r.i]=1;out.push(r);}}}
+  if(S){for(const i of mistakeWords()){const key='w'+i;if(!seen[key]&&out.length<60){seen[key]=1;out.push({t:'w',i});}}}
   return shuf(rng,out).slice(0,k);}
 function genExample(w){
   if(w.f==='v'){const base=CM[w.k]||'';return ['저는 '+base+w.yo,'Пример с «'+w.ru.toLowerCase()+'»'];}
@@ -1345,23 +1617,22 @@ function buildSentenceFor(it){
   if(w.f==='h')return [w.k+part(w.k,'obj')+' 만났어요','Я встретил: '+w.ru.toLowerCase()];
   if(w.f==='t')return [w.k+' 뭐 해요?','Что делаешь ('+w.ru.toLowerCase()+')?'];
   return ['저는 '+w.k+part(w.k,'obj')+' 좋아해요','Мне нравится: '+w.ru.toLowerCase()];}
-/* конструкторы заданий */
 function tChoice(it,rng,plan){
   const n=(plan&&plan.n)||300;
   if(it.t==='g'){const g=G[it.i];const dis=shuf(rng,G.filter((x,i)=>i!==it.i).map(x=>x[1])).slice(0,optCount(n));
-    return {kind:'choice',q:'Что выражает конструкция «'+g[0]+'»?',opts:shuf(rng,[g[1],...dis]),ans:g[1],ref:it,alwaysNote:true,
+    return {kind:'choice',q:'Что выражает конструкция «'+g[0]+'»?',opts:shuf(rng,[g[1]].concat(dis)),ans:g[1],ref:it,alwaysNote:true,
       note:g[0]+' — '+g[1]+'. Пример: '+g[3]+' — '+g[5]+'.'};}
   const it2=itemGet(it);
   if(it.t==='p'){const dis=distractors(it,rng,optCount(n)).map(d=>itemGet(d)[2]);
-    return {kind:'choice',q:'Что означает фраза:',kw:it2[0],rom:romShown(n)?it2[1]:'',opts:shuf(rng,[it2[2],...dis]),ans:it2[2],ref:it,note:'«'+it2[0]+'» = '+it2[2]};}
+    return {kind:'choice',q:'Что означает фраза:',kw:it2[0],rom:romShown(n)?it2[1]:'',opts:shuf(rng,[it2[2]].concat(dis)),ans:it2[2],ref:it,note:'«'+it2[0]+'» = '+it2[2]};}
   const w=W[it.i],dis=distractors(it,rng,optCount(n)).map(d=>W[d.i].ru);
-  return {kind:'choice',q:'Что означает:',kw:w.k,rom:romShown(IL['w'+it.i]||50)?w.r:'',opts:shuf(rng,[w.ru,...dis]),ans:w.ru,ref:it,note:'«'+w.k+'» ['+w.r+'] = '+w.ru};}
+  return {kind:'choice',q:'Что означает:',kw:w.k,rom:romShown(IL['w'+it.i]||50)?w.r:'',opts:shuf(rng,[w.ru].concat(dis)),ans:w.ru,ref:it,note:'«'+w.k+'» ['+w.r+'] = '+w.ru};}
 function tReverse(it,rng,plan){
   const n=(plan&&plan.n)||300;
   if(it.t==='p'){const w=PH[it.i];const dis=distractors(it,rng,optCount(n)).map(d=>itemGet(d)[0]);
-    return {kind:'choice',q:'Как по-корейски: «'+w[2]+'»?',opts:shuf(rng,[w[0],...dis]),ans:w[0],ref:it,kr:true,note:w[0]+' = '+w[2]};}
+    return {kind:'choice',q:'Как по-корейски: «'+w[2]+'»?',opts:shuf(rng,[w[0]].concat(dis)),ans:w[0],ref:it,kr:true,note:w[0]+' = '+w[2]};}
   const w=W[it.i];const dis=distractors(it,rng,optCount(n)).map(d=>W[d.i].k);
-  return {kind:'choice',q:'Как будет «'+w.ru.toLowerCase()+'»?',opts:shuf(rng,[w.k,...dis]),ans:w.k,ref:it,kr:true,note:w.k+' ['+w.r+'] = '+w.ru};}
+  return {kind:'choice',q:'Как будет «'+w.ru.toLowerCase()+'»?',opts:shuf(rng,[w.k].concat(dis)),ans:w.k,ref:it,kr:true,note:w.k+' ['+w.r+'] = '+w.ru};}
 function tTF(it,rng){
   const w=itemGet(it);let stmt,ans;
   if(it.t==='g'){const ok=rng()<.5;let m2=w[1];
@@ -1375,10 +1646,15 @@ function tTF(it,rng){
     note:'Правильное значение: '+(it.t==='p'?w[0]+' = '+w[2]:it.t==='g'?w[0]+' — '+w[1]:w.k+' = '+w.ru)};}
 function tListen(it,rng,plan){
   const n=(plan&&plan.n)||300;
-  const txt=itemGet(it)[0];
-  const dis=distractors(it,rng,optCount(n)).map(d=>itemGet(d)[0]);
-  return {kind:'listen',q:'Прослушай и выбери, что прозвучало',text:txt,opts:shuf(rng,[txt,...dis]),ans:txt,ref:it,kr:true,
-    hint:it.t==='w'?W[it.i].r:(it.t==='p'?PH[it.i][1]:''),note:'Прозвучало: '+txt};}
+  const q=itemToQ(it);
+  const roll=rng();
+  if(it.t==='w'&&n>=120&&roll<0.22&&W[it.i].k.length<=4)q.type='listen-write';
+  else if(it.t==='p'&&n>=150&&roll<0.45)q.type='listen-build';
+  else if(n>=140&&roll<0.62)q.type='listen-translate';
+  else if(n>=200&&roll<0.8)q.type='listen-tf';
+  else q.type='listen-choice';
+  const t=audioQuestionToTask(q,rng);
+  t.ref=it;return t;}
 function tGap(it,rng){
   const w=W[it.i];if(w.f==='v')return tConj(it,rng);if(w.f==='a')return tChoice(it,rng);
   let kinds;
@@ -1388,7 +1664,7 @@ function tGap(it,rng){
   const kk=kinds[Math.floor(rng()*kinds.length)];
   const ans=part(w.k,kk);
   const pool=['top','sub','obj','loc','gen','also','only'].filter(x=>x!==kk&&!(x==='loc'&&w.f!=='p'));
-  const opts=shuf(rng,[ans,...shuf(rng,pool).slice(0,3).map(p=>part(w.k,p))]);
+  const opts=shuf(rng,[ans].concat(shuf(rng,pool).slice(0,3).map(p=>part(w.k,p))));
   const verbMap={obj:(w.f==='e'?' 먹어요':w.f==='d'?' 마셔요':' 좋아해요'),sub:' 있어요',top:' 어때요?',loc:' 가요',gen:' 이름이 뭐예요?'};
   const explMap={obj:'을/를 — частица объекта (что? кого?)',sub:'이/가 — частица подлежащего (кто? что?)',top:'은/는 — частица темы',loc:'에 — направление/место «в, на»',gen:'의 — притяжательная частица «-ин, -ов»'};
   const sent=(kk==='gen'?'저는 '+w.k+'___':w.k+'___'+(verbMap[kk]||' 있어요'));
@@ -1412,12 +1688,12 @@ function tBuild(it,rng,plan){
   if(n>500&&tokens.length>2){
     const other={t:'w',i:Math.floor(rng()*W.length)};
     const p2=buildSentenceFor(other);
-    if(p2)p2[0].split(' ').forEach(tk=>{if(!tokens.includes(tk)&&decoys.length<(n>800?2:1)&&rng()<.6)decoys.push(tk);});}
-  return {kind:'build',q:'Составь предложение',hint:s[1],tokens,bank:shuf(rng,[...tokens,...decoys]),ans:tokens,ref:it,note:'Правильно: '+s[0]+' — '+s[1]};}
+    if(p2)p2[0].split(' ').forEach(tk=>{if(tokens.indexOf(tk)===-1&&decoys.length<(n>800?2:1)&&rng()<.6)decoys.push(tk);});}
+  return {kind:'build',q:'Составь предложение',hint:s[1],tokens,bank:shuf(rng,tokens.concat(decoys)),ans:tokens,ref:it,note:'Правильно: '+s[0]+' — '+s[1]};}
 function tGapG(it,rng,plan){const g=G[it.i];const n=(plan&&plan.n)||300;
   const dis=shuf(rng,G.filter((x,i)=>i!==it.i).map(x=>x[3])).slice(0,optCount(n));
   return {kind:'choice',q:'Выбери пример на конструкцию «'+g[0]+'» ('+g[1]+')',
-    opts:shuf(rng,[g[3],...dis]),ans:g[3],ref:it,kr:true,alwaysNote:true,note:g[3]+' ['+g[4]+'] — '+g[5]};}
+    opts:shuf(rng,[g[3]].concat(dis)),ans:g[3],ref:it,kr:true,alwaysNote:true,note:g[3]+' ['+g[4]+'] — '+g[5]};}
 function tCard(it){return {kind:'card',ref:it};}
 function mkTask(it,plan,rng){
   const n=plan.n||300,opts=[];
@@ -1438,12 +1714,12 @@ function generateLesson(plan){
     lets.forEach(l=>T.push({kind:'card',letter:l}));
     for(let i=0;i<6;i++){const l=lets[i%lets.length];
       if(i%2===0){const dis=shuf(rng,LET.filter(x=>x[0]!==l[0]).map(x=>x[1])).slice(0,3);
-        T.push({kind:'choice',q:'Как называется буква:',kw:l[0],opts:shuf(rng,[l[1],...dis]),ans:l[1],note:l[0]+' — это '+l[1]+' ['+l[2]+'], звук: '+l[3]});}
+        T.push({kind:'choice',q:'Как называется буква:',kw:l[0],opts:shuf(rng,[l[1]].concat(dis)),ans:l[1],note:l[0]+' — это '+l[1]+' ['+l[2]+'], звук: '+l[3]});}
       else{const dis=shuf(rng,LET.filter(x=>x[0]!==l[0]).map(x=>x[0])).slice(0,3);
-        T.push({kind:'choice',q:'Найди букву «'+l[1]+'» (звук: '+l[3]+')',opts:shuf(rng,[l[0],...dis]),ans:l[0],kr:true,note:l[0]+' — это '+l[1]+' ['+l[2]+']'});}}
+        T.push({kind:'choice',q:'Найди букву «'+l[1]+'» (звук: '+l[3]+')',opts:shuf(rng,[l[0]].concat(dis)),ans:l[0],kr:true,note:l[0]+' — это '+l[1]+' ['+l[2]+']'});}}
     return T;}
   plan.newItems.forEach(it=>T.push(tCard(it)));
-  const pool=[...plan.newItems,...pastItems(plan.n,rng,8)];
+  const pool=plan.newItems.concat(pastItems(plan.n,rng,8));
   if(!pool.length)for(let i=0;i<6;i++)pool.push({t:'w',i:Math.floor(rng()*Math.min(60,W.length))});
   const exN=5+Math.min(6,Math.floor(plan.n/150));
   for(let i=0;i<exN;i++){const it=pickItem(rng,pool);const t=mkTask(it,plan,rng);t.ref=it;T.push(t);}
@@ -1455,7 +1731,8 @@ function generateLesson(plan){
 let tickIv=null;
 function startTimer(){clearInterval(tickIv);tickIv=setInterval(()=>{if(S&&L){S.st.time++;if(S.st.time%15===0)saveProgress();}},1000);}
 function stopTimer(){clearInterval(tickIv);}
-function startLesson(n,mode='lesson'){
+function startLesson(n,mode){
+  mode=mode||'lesson';
   if(n<1||n>1000)return;
   const plan=PLANS[n];
   L={n,mode,plan,tasks:generateLesson(plan),i:0,ok:0,bad:0,combo:0,xp:0,retried:new Set(),done:false,finalAll:true};
@@ -1466,32 +1743,38 @@ function startSession(kind){
   const pseudoN=Math.max(60,Math.min(850,S.currentLesson));
   if(kind==='due')refs=dueWords().map(i=>({t:'w',i}));
   else if(kind==='mist')refs=mistakeWords().map(i=>({t:'w',i}));
-  else if(kind==='listen')refs=shuf(Math.random,PH.map((p,i)=>({t:'p',i}))).slice(0,8);
-  else refs=shuf(Math.random,W.map((w,i)=>({t:'w',i}))).filter(r=>S.words[r.i]&&S.words[r.i].s).slice(0,10);
-  if(!refs.length){toast(kind==='due'?'Пока нет слов для повторения — пройди пару уроков!':'Список пуст — выучи больше слов','🙂');return;}
+  else if(kind==='listen')refs=shuffleArr(PH.map((p,i)=>({t:'p',i}))).slice(0,8);
+  else refs=shuffleArr(W.map((w,i)=>({t:'w',i}))).filter(r=>S.words[r.i]&&S.words[r.i].s).slice(0,10);
+  if(!refs.length){toast('Список пуст — пройди пару уроков','🙂');return;}
   refs=refs.slice(0,14);
   const rng=rng32(Date.now()%1e9);
   const tasks=[];
-  refs.forEach(r=>{let t;if(kind==='listen')t=tListen(r,rng,{n:pseudoN});else t=mkTask(r,{n:pseudoN},rng);t.ref=r;tasks.push(t);});
+  refs.forEach(r=>{const t=mkTask(r,{n:pseudoN},rng);t.ref=r;tasks.push(t);});
   L={n:0,mode:'session',plan:{n:pseudoN,type:'session',newItems:[]},tasks,i:0,ok:0,bad:0,combo:0,xp:0,retried:new Set(),done:false,finalAll:true};
   document.body.classList.add('in-lesson');
   startTimer();renderLessonShell();renderTask();}
+function startAudioTrainer(){
+  const tasks=[];
+  for(let i=0;i<12;i++){const q=getRandomQuestion();if(!q)break;tasks.push(audioQuestionToTask(q,Math.random));}
+  if(!tasks.length){toast('База заданий пуста','⚠️');return;}
+  L={n:0,mode:'audio',plan:{n:300,type:'audio',newItems:[]},tasks,i:0,ok:0,bad:0,combo:0,xp:0,retried:new Set(),done:false,finalAll:true};
+  document.body.classList.add('in-lesson');
+  startTimer();renderLessonShell();renderTask();}
 function renderLessonShell(){
-  const p=L.plan;
-  const label=L.mode==='session'?'🎯 Тренировка':'Урок '+L.n+' · '+lessonTitle(L.n);
+  const label=L.mode==='session'?'🎯 Тренировка':L.mode==='audio'?'🎧 Аудио-тренажёр':'Урок '+L.n+' · '+lessonTitle(L.n);
   $('#view').innerHTML='<div id="lesson-wrap">'+
     '<div class="lhead"><button class="x" id="l-exit" title="Выйти">✕</button>'+
     '<div class="bar" style="flex:1"><i id="l-bar" style="width:0%"></i></div>'+
     '<span class="chip" id="l-cnt">0/'+L.tasks.length+'</span><span class="combo" id="l-combo"></span></div>'+
     '<div class="lsec" id="l-sec"></div>'+
     '<div id="l-q"></div></div><div id="fb-slot"></div>';
-  $('#l-exit').onclick=()=>{if(confirm('Выйти из урока? Прогресс этого урока не сохранится.')){go('map');}};
+  $('#l-exit').onclick=()=>{if(confirm('Выйти? Прогресс этого занятия не сохранится.')){go('map');}};
   const h=document.createElement('div');h.style.cssText='font-weight:800;font-size:13px;color:var(--mut);margin:4px 0 10px';h.textContent=label;
   $('#lesson-wrap').insertBefore(h,$('#l-sec'));}
 function updateProgress(){if(!L)return;$('#l-bar').style.width=Math.round(100*L.i/L.tasks.length)+'%';
   $('#l-cnt').textContent=Math.min(L.i+1,L.tasks.length)+'/'+L.tasks.length;
   $('#l-combo').textContent=L.combo>=3?'🔥 комбо ×'+L.combo:'';}
-function secLabel(t){if(t.kind==='card')return t.letter?'✍️ ХАНГЫЛЬ':'🆕 НОВОЕ СЛОВО';if(t.final)return '⚔️ ФИНАЛЬНОЕ ИСПЫТАНИЕ';if(t.retry)return '🔁 ПОВТОРЕНИЕ';return '🎯 ПРАКТИКА';}
+function secLabel(t){if(t.kind==='card')return t.letter?'✍️ ХАНГЫЛЬ':'🆕 НОВОЕ СЛОВО';if(t.final)return '⚔️ ФИНАЛЬНОЕ ИСПЫТАНИЕ';if(t.retry)return '🔁 ПОВТОРЕНИЕ';if(t.audio)return '🎧 АУДИРОВАНИЕ';return '🎯 ПРАКТИКА';}
 function renderTask(){
   if(!L)return;
   if(L.i>=L.tasks.length){completeLesson();return;}
@@ -1500,30 +1783,36 @@ function renderTask(){
   $('#l-sec').innerHTML=secLabel(t);updateProgress();
   const q=$('#l-q');
   if(t.kind==='card'){renderCard(t,q);return;}
+  const aud=t.audio?audioBlockHTML():'';
+  const noVoice=t.audio&&!hasVoice(t.audio.lang||'ko-KR');
   if(t.kind==='tf'){
-    q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+
+    q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+aud+
       '<div class="kr" style="font-size:24px;font-weight:700;margin:14px 0">'+esc(t.stmt)+'</div>'+
       '<div class="opts cols2"><button class="opt" data-tf="1">✅ Правда</button><button class="opt" data-tf="0">❌ Ложь</button></div></div>';
-    $$('.opt').forEach(b=>b.onclick=()=>checkAnswer(b.dataset.tf==='1'));return;}
-  if(t.kind==='listen'){
-    q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+
-      '<div class="center" style="margin:16px 0"><button class="speakbtn" id="l-play">🔊</button>'+
-      (koVoice?'':'<div class="mut" style="margin-top:10px;font-size:12.5px">Корейский голос не найден в браузере — подсказка ниже 👇</div><div class="tag" style="margin-top:8px">'+esc(t.hint)+'</div>')+
-      '</div><div class="opts cols2">'+t.opts.map((o,i)=>'<button class="opt krb" data-i="'+i+'">'+esc(o)+'</button>').join('')+'</div></div>';
-    $('#l-play').onclick=()=>{speakKorean(t.text);};
-    if(S.set.sound)speakKorean(t.text);
-    bindOpts(t);return;}
-  if(t.kind==='gap'){
+    $$('.opt').forEach(b=>b.onclick=()=>checkAnswer(b.dataset.tf==='1'));}
+  else if(t.kind==='write'){
+    q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+aud+
+      '<div class="mut" style="font-size:13px;font-weight:600;margin:6px 0">Напиши услышанное слово — хангылем или латиницей.</div>'+
+      '<input class="inp" id="w-inp" autocomplete="off" autocapitalize="off" placeholder="Твой ответ…">'+
+      '<button class="btn red wide big" style="margin-top:12px" id="w-chk">Проверить</button></div>';
+    $('#w-chk').onclick=()=>checkAnswer($('#w-inp').value);
+    $('#w-inp').addEventListener('keydown',e=>{if(e.key==='Enter')checkAnswer(e.target.value);});}
+  else if(t.kind==='listen'){
+    q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+aud+
+      (noVoice&&t.hint?'<div class="center"><span class="tag">Голос не найден — подсказка: '+esc(t.hint)+'</span></div>':'')+
+      '<div class="opts cols2">'+t.opts.map((o,i)=>'<button class="opt '+(t.kr?'krb':'')+'" data-i="'+i+'">'+esc(o)+'</button>').join('')+'</div></div>';
+    bindOpts(t);}
+  else if(t.kind==='gap'){
     q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+
       '<div class="kr" style="font-size:26px;font-weight:700;margin:16px 0">'+esc(t.sent).replace('___','<span style="color:var(--red)">___</span>')+'</div>'+
       '<div class="opts cols2">'+t.opts.map((o,i)=>'<button class="opt krb" data-i="'+i+'">'+esc(o)+'</button>').join('')+'</div></div>';
-    bindOpts(t);return;}
-  if(t.kind==='build'){
-    q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+
+    bindOpts(t);}
+  else if(t.kind==='build'){
+    q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+aud+
       '<div class="mut" style="font-size:13.5px;font-weight:600;margin-top:4px">Перевод: '+esc(t.hint)+'</div>'+
       '<div class="tokens" id="b-ans"></div><div class="bank" id="b-bank"></div>'+
       '<button class="btn red wide big" id="b-check" disabled>Проверить</button></div>';
-    const st={ans:[],bank:t.bank.map((w,i)=>({w,id:i}))};
+    const st={ans:[],bank:t.bank.map((w,i)=>({w:w,id:i}))};
     const draw=()=>{
       $('#b-ans').innerHTML=st.ans.map(x=>'<button class="tk" data-a="'+x.id+'">'+esc(x.w)+'</button>').join('');
       $('#b-bank').innerHTML=st.bank.map(x=>'<button class="tk" data-b="'+x.id+'">'+esc(x.w)+'</button>').join('');
@@ -1531,12 +1820,13 @@ function renderTask(){
       $('#b-ans').querySelectorAll('.tk').forEach(b=>b.onclick=()=>{const id=+b.dataset.a;const x=st.ans.find(y=>y.id===id);st.ans=st.ans.filter(y=>y.id!==id);st.bank.push(x);draw();sfx('click');});
       $('#b-bank').querySelectorAll('.tk').forEach(b=>b.onclick=()=>{const id=+b.dataset.b;const x=st.bank.find(y=>y.id===id);st.bank=st.bank.filter(y=>y.id!==id);st.ans.push(x);draw();sfx('click');});};
     draw();
-    $('#b-check').onclick=()=>checkAnswer(st.ans.map(x=>x.w));return;}
-  /* choice */
-  q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+
-    (t.kw?'<div class="qword kr">'+esc(t.kw)+'</div>'+(t.rom?'<div class="mut" style="font-weight:600">'+esc(t.rom)+'</div>':''):'')+
-    '<div class="opts '+(t.opts.length>3?'cols2':'')+'">'+t.opts.map((o,i)=>'<button class="opt '+(t.kr?'krb':'')+'" data-i="'+i+'">'+esc(o)+'</button>').join('')+'</div></div>';
-  bindOpts(t);}
+    $('#b-check').onclick=()=>checkAnswer(st.ans.map(x=>x.w));}
+  else{
+    q.innerHTML='<div class="qcard"><div class="qtitle">'+esc(t.q)+'</div>'+aud+
+      (t.kw?'<div class="qword kr">'+esc(t.kw)+'</div>'+(t.rom?'<div class="mut" style="font-weight:600">'+esc(t.rom)+'</div>':''):'')+
+      '<div class="opts '+(t.opts.length>3?'cols2':'')+'">'+t.opts.map((o,i)=>'<button class="opt '+(t.kr?'krb':'')+'" data-i="'+i+'">'+esc(o)+'</button>').join('')+'</div></div>';
+    bindOpts(t);}
+  if(t.audio){bindAudioBlock(q,t);if(S.set.sound)playTaskAudio(t);}}
 function bindOpts(t){$$('.opt[data-i]').forEach(b=>b.onclick=()=>{
   $$('.opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');
   setTimeout(()=>checkAnswer(t.opts[+b.dataset.i]),180);});}
@@ -1573,7 +1863,11 @@ const PRAISE=['Отлично!','Верно!','Молодец!','Именно т
 const ENCOUR=['Ничего страшного! Попробуй ещё раз чуть позже.','Ошибаться — нормально. Слово вернётся в повторении.','Почти! Запомним и повторим.'];
 function checkAnswer(val){
   if(!L||L.done)return;const t=L.tasks[L.i];L.done=true;
-  const ok=t.kind==='build'?(Array.isArray(val)&&val.length===t.ans.length&&val.every((x,i)=>x===t.ans[i])):(val===t.ans);
+  let ok;
+  if(t.kind==='build')ok=Array.isArray(val)&&val.length===t.ans.length&&val.every((x,i)=>x===t.ans[i]);
+  else if(t.kind==='write'){const v=String(val||'').trim().toLowerCase();ok=t.ansArr&&t.ansArr.indexOf(v)!==-1;
+    const inp=$('#w-inp');if(inp){inp.disabled=true;inp.classList.add(ok?'ainp-ok':'ainp-no');}}
+  else ok=(val===t.ans);
   if(ok){L.ok++;L.combo++;S.st.maxCombo=Math.max(S.st.maxCombo,L.combo);
     let gain=10;if(L.combo>0&&L.combo%3===0)gain+=5;
     L.xp+=gain;addXP(gain);recordAnswer(t.ref,true);sfx('ok');
@@ -1585,10 +1879,11 @@ function checkAnswer(val){
     if(t.ref&&!L.retried.has(t.ref.t+t.ref.i)){L.retried.add(t.ref.t+t.ref.i);
       const nt=mkTask(t.ref,L.plan,rng32(Date.now()%1e9));nt.retry=true;nt.ref=t.ref;
       const fi=L.tasks.findIndex(x=>x.final);L.tasks.splice(fi===-1?L.tasks.length:fi,0,nt);}}
+  if(L.mode==='audio')recordAudioStats(ok,t);
   showFB(ok,t);}
 function showFB(ok,t){
   const r=$('#fb-root');
-  const ansStr=t.kind==='build'?t.ans.join(' '):(t.kind==='tf'?(t.ans?'✅ Правда':'❌ Ложь'):String(t.ans));
+  const ansStr=t.kind==='build'?t.ans.join(' '):t.kind==='write'?(t.ansArr?t.ansArr[0]:t.ans):t.kind==='tf'?(t.ans?'✅ Правда':'❌ Ложь'):String(t.ans);
   r.innerHTML='<div class="fb '+(ok?'ok':'no')+'"><div class="in">'+
     '<div class="msg"><b>'+(ok?PRAISE[Math.floor(Math.random()*PRAISE.length)]:'❌ Неверно')+'</b>'+
     (ok?'':'<div style="margin-top:4px;font-weight:600">Правильный ответ: <span class="kr">'+esc(ansStr)+'</span></div><div style="font-size:13px;margin-top:3px;font-weight:600">'+esc(ENCOUR[Math.floor(Math.random()*ENCOUR.length)])+'</div>')+
@@ -1614,26 +1909,28 @@ function completeLesson(){
   const newWords=isLesson?L.plan.newItems.filter(x=>x.t!=='g').length:0;
   const finale=isLesson&&L.n===1000;
   const nn=L.n,mm=L.mode;
+  const ttl=finale?'ПОЗДРАВЛЯЕМ!':(mm==='audio'?'Аудио-тренировка завершена!':(mm==='session'?'Тренировка завершена!':'Урок завершён!'));
   $('#view').innerHTML='<div id="lesson-wrap"><div class="acard center finale">'+
     (finale?'<div style="font-size:64px">🎉🎉🎉</div><div class="huge" style="margin:12px 0">ПОЗДРАВЛЯЕМ!</div><p style="font-weight:700;font-size:17px">Ты завершил все 1000 уроков!<br>Ты прошёл полный курс корейского языка. 화이팅!</p>'
-    :'<div style="font-size:64px">🎉</div><div class="huge" style="margin:12px 0">Урок завершён!</div>')+
+    :'<div style="font-size:64px">🎉</div><div class="huge" style="margin:12px 0">'+ttl+'</div>')+
     '<div class="grid g2" style="margin:20px 0;text-align:left">'+
       '<div class="stat-tile"><div class="n" style="color:var(--gold)">+'+(L.xp+bonus)+' XP</div><div class="l">Заработано</div></div>'+
       '<div class="stat-tile"><div class="n">'+acc+'%</div><div class="l">Точность</div></div>'+
       '<div class="stat-tile"><div class="n">'+newWords+'</div><div class="l">Новых слов</div></div>'+
       '<div class="stat-tile"><div class="n" style="color:'+(acc>=80?'var(--green)':'var(--orange)')+'">'+L.ok+'/'+answered.length+'</div><div class="l">Верных ответов</div></div>'+
     '</div>'+
-    (finale?'<div class="grid g3" style="margin-bottom:20px"><div class="stat-tile"><div class="n">'+learnedWords()+'</div><div class="l">Слов выучено</div></div><div class="stat-tile"><div class="n">'+fmt(S.xp)+'</div><div class="l">Всего XP</div></div><div class="stat-tile"><div class="n">'+Object.keys(S.ach).length+'/'+ACH.length+'</div><div class="l">Достижений</div></div></div>':'')+
     '<div style="display:flex;gap:10px;flex-wrap:wrap">'+
       (isLesson&&nn<1000?'<button class="btn red big" style="flex:1" id="c-next-l">Следующий урок →</button>':'')+
       (finale?'<button class="btn gold big" style="flex:1" id="c-map2">🗺️ Карта курса</button>':'')+
       '<button class="btn ghost" style="flex:1" id="c-rep">🔁 Повторить</button>'+
       '<button class="btn ghost" style="flex:1" id="c-map">К карте</button>'+
+      '<button class="btn ghost" style="flex:1" id="c-ai">🤖 Спросить AI об уроке</button>'+
     '</div></div></div>';
   const nx=$('#c-next-l');if(nx)nx.onclick=()=>startLesson(nn+1);
-  $('#c-rep').onclick=()=>{if(mm==='lesson')startLesson(nn);else go('practice');};
+  $('#c-rep').onclick=()=>{if(mm==='lesson')startLesson(nn);else if(mm==='audio')startAudioTrainer();else go('practice');};
   $('#c-map').onclick=()=>go('map');
   const m2=$('#c-map2');if(m2)m2.onclick=()=>go('map');
+  $('#c-ai').onclick=()=>aiAsk('Объясни коротко главные слова и грамматику урока '+nn+' («'+lessonTitle(Math.max(1,nn))+'») и дай 3 примера.');
   document.body.classList.remove('in-lesson');}
 
 /* ---------- виды ---------- */
@@ -1651,7 +1948,7 @@ function showDashboard(){
     '<div class="mut" style="font-weight:700">'+greet+', '+esc(S.name)+'! 👋</div>';
   if(finished){
     html+='<h2 style="font-family:var(--fd);font-size:clamp(19px,3vw,26px);margin:6px 0">🎓 Курс пройден! Ты легенда!</h2>'+
-      '<p class="mut" style="font-weight:600">Все 1000 уроков позади. Продолжай тренировать слова и грамматику!</p>'+
+      '<p class="mut" style="font-weight:600">Все 1000 уроков позади. Продолжай тренировать слова и аудио!</p>'+
       '<button class="btn gold big" style="margin-top:14px" id="d-prac">🎯 К тренировкам</button>';
   }else{
     html+='<h2 style="font-family:var(--fd);font-size:clamp(19px,3vw,26px);margin:6px 0">Урок '+cur+' · '+esc(lessonTitle(cur))+'</h2>'+
@@ -1659,7 +1956,8 @@ function showDashboard(){
       '<span class="tag" style="background:'+s.c+';color:#fff;border-color:'+s.c+'">'+s.e+' '+s.ru+' · '+s.kr+'</span>'+
       '<span class="tag">Урок '+cur+' / 1000</span></div>'+
       '<div class="bar" style="margin-bottom:14px"><i style="width:'+Math.max(2,Math.round(100*cur/1000))+'%"></i></div>'+
-      '<button class="btn red big" id="d-start">▶ Начать урок '+cur+'</button>';
+      '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn red big" id="d-start">▶ Начать урок '+cur+'</button>'+
+      '<button class="btn ghost" id="d-ai" style="background:var(--card)">🤖 Спросить AI</button></div>';
   }
   html+='</div><div style="text-align:center;min-width:120px">'+
     '<div style="font-size:44px">'+s.e+'</div>'+
@@ -1690,6 +1988,7 @@ function showDashboard(){
   const ds=$('#d-start');if(ds)ds.onclick=()=>startLesson(cur);
   const dp=$('#d-prac');if(dp)dp.onclick=()=>go('practice');
   const dd=$('#d-due');if(dd)dd.onclick=()=>startSession('due');
+  const da=$('#d-ai');if(da)da.onclick=()=>openAIChat();
   $$('.stprev').forEach(c=>c.onclick=()=>go('map'));}
 function showMap(){
   const cur=Math.min(S.currentLesson,1000);
@@ -1735,7 +2034,7 @@ function showVocabulary(){
     '<button class="btn tag-f" data-f="y">🟡 Повторить</button>'+
     '<button class="btn tag-f" data-f="r">🔴 Слабые</button>'+
   '</div><div id="w-list"></div>'+
-  '<p class="mut" style="font-size:12px;font-weight:600;margin-top:10px">🟢 знаю хорошо (уровень 3+) · 🟡 стоит повторить · 🔴 часто ошибаюсь. Нажми 🔊, чтобы послушать произношение.</p>';
+  '<p class="mut" style="font-size:12px;font-weight:600;margin-top:10px">🟢 знаю хорошо · 🟡 стоит повторить · 🔴 часто ошибаюсь. 🔊 — послушать, 🤖 — спросить AI.</p>';
   let f='all';
   const mastery=i=>{const w=S.words[i];return w.box>=3?'g':(w.bad>w.ok?'r':'y');};
   const render=()=>{const q=$('#w-q').value.trim().toLowerCase();const box=$('#w-list');
@@ -1747,6 +2046,7 @@ function showVocabulary(){
     box.innerHTML=rows.slice(0,300).map(i=>{const w=W[i],d=S.words[i],m=mastery(i);const ex=genExample(w);
       return '<div class="wrow"><span class="dot '+m+'"></span>'+
         '<button class="icobtn wsp" data-sp="'+i+'" style="width:34px;height:34px;font-size:14px">🔊</button>'+
+        '<button class="icobtn wai" data-i="'+i+'" style="width:34px;height:34px;font-size:13px" title="Спросить AI">🤖</button>'+
         '<div style="flex:1;min-width:160px"><b class="kr" style="font-size:17px">'+esc(w.k)+'</b>'+
         ' <span class="mut" style="font-size:12px">['+esc(w.r)+']</span>'+
         '<div style="font-size:13.5px;font-weight:600">'+esc(w.ru)+'</div>'+
@@ -1754,38 +2054,58 @@ function showVocabulary(){
         '<span class="tag">'+CATN[w.f==='v'?'act':w.f==='a'?'qal':w.c]+'</span>'+
         '<span class="tag" title="Уровень запоминания">'+'●'.repeat(d.box)+'○'.repeat(5-d.box)+'</span></div>';}).join('')+
       (rows.length>300?'<p class="mut center" style="font-size:12.5px">Показаны первые 300 из '+rows.length+'</p>':'');
-    box.querySelectorAll('.wsp').forEach(b=>b.onclick=()=>speakKorean(W[+b.dataset.sp].k));};
+    box.querySelectorAll('.wsp').forEach(b=>b.onclick=()=>speakKorean(W[+b.dataset.sp].k));
+    box.querySelectorAll('.wai').forEach(b=>b.onclick=()=>{const w=W[+b.dataset.i];
+      aiAsk('Объясни корейское слово '+w.k+' ('+w.ru+'): значение, как используется, и 2 примера с переводом.');});};
   $('#w-q').oninput=render;
   $$('.tag-f').forEach(b=>b.onclick=()=>{f=b.dataset.f;$$('.tag-f').forEach(x=>x.classList.remove('act'));b.classList.add('act');render();});
   render();}
 function showPractice(){
-  const due=dueWords().length,mist=mistWords().length;
+  const due=dueWords().length,mist=mistakeWords().length;
+  ensureAudioStats();
+  const A=S.audio,accA=(A.ok+A.bad)?Math.round(100*A.ok/(A.ok+A.bad)):0;
   $('#view').innerHTML=
+  '<div class="card" style="border-left:8px solid var(--blue);margin-bottom:14px">'+
+    '<div style="font-size:34px">🎧</div>'+
+    '<b style="font-family:var(--fd);font-size:17px">Аудио-тренажёр</b>'+
+    '<p class="mut" style="font-size:13px;font-weight:600;margin:6px 0 0">5 типов заданий: услышь и выбери, услышь и напиши, фраза → перевод, собери фразу, правда/ложь. Задания выбираются случайно и не повторяются.</p>'+
+    '<div class="aprog">'+
+      '<span>Выполнено: '+A.done+' / 30</span><span>Правильно: '+A.ok+'</span>'+
+      '<span>Точность: '+accA+'%</span><span>🔥 Серия: '+A.streak+'</span>'+
+      '<span>Прослушиваний: '+A.listens+'</span><span>Выучено слов: '+Object.keys(A.learned).length+'</span>'+
+    '</div>'+
+    '<button class="btn blue big" id="p-audio">▶️ Начать аудио-тренировку</button>'+
+  '</div>'+
   '<div class="grid g2">'+
     '<div class="card"><div style="font-size:34px">🔁</div><b style="font-family:var(--fd);font-size:16px">Интервальное повторение</b>'+
     '<p class="mut" style="font-size:13px;font-weight:600;margin:6px 0 14px">Слова, подошедшие по расписанию. Чем чаще отвечаешь верно — тем реже они появляются.</p>'+
     '<button class="btn blue s-due" '+(due?'':'disabled')+'>'+(due?'Повторить '+due+' слов':'Всё повторено ✨')+'</button></div>'+
     '<div class="card"><div style="font-size:34px">❌</div><b style="font-family:var(--fd);font-size:16px">Работа над ошибками</b>'+
-    '<p class="mut" style="font-size:13px;font-weight:600;margin:6px 0 14px">Слова, в которых ты ошибался 2+ раза. Приложение адаптируется под тебя!</p>'+
+    '<p class="mut" style="font-size:13px;font-weight:600;margin:6px 0 14px">Слова, в которых ты ошибался 2+ раза.</p>'+
     '<button class="btn red s-mist" '+(mist?'':'disabled')+'>'+(mist?'Тренировать '+mist+' слов':'Ошибок нет 🎉')+'</button></div>'+
-    '<div class="card"><div style="font-size:34px">🎧</div><b style="font-family:var(--fd);font-size:16px">Аудирование</b>'+
-    '<p class="mut" style="font-size:13px;font-weight:600;margin:6px 0 14px">Слушай корейскую речь (Web Speech API) и распознавай фразы на слух.</p>'+
-    '<button class="btn green s-listen">Начать 🎧</button></div>'+
     '<div class="card"><div style="font-size:34px">🎲</div><b style="font-family:var(--fd);font-size:16px">Случайная тренировка</b>'+
     '<p class="mut" style="font-size:13px;font-weight:600;margin:6px 0 14px">10 случайных заданий по выученным словам.</p>'+
     '<button class="btn gold s-rand">Сыграть 🎲</button></div>'+
+    '<div class="card"><div style="font-size:34px">🎧</div><b style="font-family:var(--fd);font-size:16px">Аудирование фраз</b>'+
+    '<p class="mut" style="font-size:13px;font-weight:600;margin:6px 0 14px">Слушай корейские фразы и распознавай их на слух.</p>'+
+    '<button class="btn green s-listen">Начать 🎧</button></div>'+
   '</div>'+
   '<h2 class="sec">📖 Справочник грамматики ('+G.length+' конструкций)</h2>'+
   '<div class="card pad-s">'+
     [1,2,3,4,5,6,7].map(lv=>{const gs=G.map((g,i)=>({g,i})).filter(x=>x.g[2]===lv);if(!gs.length)return '';
       return '<details style="margin-bottom:8px;border:2px solid var(--line);border-radius:13px;padding:10px 14px;background:var(--soft)">'+
       '<summary style="font-weight:800;cursor:pointer">Этап '+lv+' · '+gs.length+' конструкций</summary>'+
-      '<div style="margin-top:10px">'+gs.map(x=>'<div style="padding:9px 0;border-bottom:1px solid var(--line)">'+
-        '<b class="kr" style="font-size:16px">'+esc(x.g[0])+'</b> — '+esc(x.g[1])+
-        '<div class="mut" style="font-size:12.5px;font-weight:600;margin-top:2px"><span class="kr">'+esc(x.g[3])+'</span> ['+esc(x.g[4])+'] — '+esc(x.g[5])+'</div></div>').join('')+'</div></details>';}).join('')+
+      '<div style="margin-top:10px">'+gs.map(x=>'<div style="padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap">'+
+        '<div style="flex:1;min-width:200px"><b class="kr" style="font-size:16px">'+esc(x.g[0])+'</b> — '+esc(x.g[1])+
+        '<div class="mut" style="font-size:12.5px;font-weight:600;margin-top:2px"><span class="kr">'+esc(x.g[3])+'</span> ['+esc(x.g[4])+'] — '+esc(x.g[5])+'</div></div>'+
+        '<button class="icobtn gai" data-g="'+x.i+'" style="width:34px;height:34px;font-size:13px" title="Объяснить с AI">🤖</button>'+
+        '</div>').join('')+'</div></details>';}).join('')+
   '</div>';
+  $('#p-audio').onclick=()=>startAudioTrainer();
   const b=(sel,k)=>{const e=document.querySelector(sel);if(e)e.onclick=()=>startSession(k);};
-  b('.s-due','due');b('.s-mist','mist');b('.s-listen','listen');b('.s-rand','rand');}
+  b('.s-due','due');b('.s-mist','mist');b('.s-listen','listen');b('.s-rand','rand');
+  $$('.gai').forEach(btn=>btn.onclick=()=>{const g=G[+btn.dataset.g];
+    aiAsk('Объясни корейскую грамматику '+g[0]+' ('+g[1]+') простыми словами и дай 3 примера с переводом.');});}
 function showStatistics(){
   const done=Object.keys(S.completed).length;
   const days=[];for(let i=13;i>=0;i--){const d=new Date(Date.now()-i*864e5).toISOString().slice(0,10);days.push([d,S.st.xpH[d]||0]);}
@@ -1859,41 +2179,88 @@ function showProfile(){
     '<button class="btn ghost" id="p-reset">♻️ Сбросить прогресс</button>'+
     '<button class="btn ghost" id="p-del" style="color:var(--red)">🗑️ Удалить профиль</button>'+
   '</div>'+
-  '<div class="notice" style="margin-top:14px">🔒 Профиль и пароль (в виде SHA-256-хеша) хранятся только локально — в этом браузере на этом устройстве.</div>';
+  '<div class="notice" style="margin-top:14px">🔒 Профиль и пароль (SHA-256-хеш) хранятся только локально — в этом браузере на этом устройстве.</div>';
   $('#p-out').onclick=logout;$('#p-reset').onclick=resetProgress;$('#p-del').onclick=deleteProfile;}
 function showSettings(){
+  const vol=(typeof S.set.vol==='number')?S.set.vol:1;
+  ensureAI();
+  const ai=S.ai;
   $('#view').innerHTML=
   '<div class="card">'+
     '<b style="font-family:var(--fd);font-size:15px">Внешний вид и звук</b>'+
     '<div class="swrow"><span style="font-weight:700">🌙 Тёмная тема</span><button class="sw '+(S.set.theme==='dark'?'on':'')+'" id="sw-theme"></button></div>'+
     '<div class="swrow"><span style="font-weight:700">🔊 Звуковые эффекты</span><button class="sw '+(S.set.sound?'on':'')+'" id="sw-sound"></button></div>'+
+    '<div class="swrow"><span style="font-weight:700">🔉 Громкость речи ('+Math.round(vol*100)+'%)</span>'+
+      '<input type="range" id="rg-vol" min="0" max="1" step="0.1" value="'+vol+'" style="width:150px"></div>'+
     '<div class="swrow"><span style="font-weight:700">🈶 Транскрипция</span>'+
       '<select class="inp" id="sel-rom" style="width:auto"><option value="auto">Авто (скрыть после 40 урока)</option><option value="on">Всегда показывать</option><option value="off">Всегда скрывать</option></select></div>'+
     '<div class="swrow"><span style="font-weight:700">🐢 Скорость речи ('+S.set.rate+')</span>'+
       '<input type="range" min="0.6" max="1.3" step="0.1" value="'+S.set.rate+'" id="rg-rate" style="width:150px"></div>'+
-    '<div class="swrow" style="border:none"><span style="font-weight:700">Проверка голоса</span><button class="btn blue" id="btn-tts">🔊 안녕하세요!</button></div>'+
-    '<p class="mut" style="font-size:12px;font-weight:600;margin-top:8px">Язык интерфейса: 🇷🇺 Русский (архитектура готова к добавлению EN)</p>'+
+    '<div class="swrow" style="border:none"><span style="font-weight:700">Проверка голосов</span>'+
+      '<span style="display:flex;gap:8px;flex-wrap:wrap">'+
+      '<button class="btn blue" id="tts-ko">🇰🇷 한국어</button>'+
+      '<button class="btn green" id="tts-ja">🇯🇵 こんにちは</button>'+
+      '<button class="btn gold" id="tts-en">🇺🇸 Hello</button></span></div>'+
+  '</div>'+
+  '<div class="card" style="margin-top:16px">'+
+    '<b style="font-family:var(--fd);font-size:15px">🤖 AI-помощник</b>'+
+    '<p class="mut" style="font-size:13px;font-weight:600;margin:8px 0 4px">AI объясняет грамматику, слова и произношение. Ключ хранится только в этом браузере (localStorage) и никогда не попадает в код сайта.</p>'+
+    '<div class="lbl">Провайдер API</div>'+
+    '<select class="inp" id="ai-prov"><option value="openai">OpenAI-совместимый (OpenAI, OpenRouter, Groq, Ollama)</option><option value="gemini">Google Gemini</option></select>'+
+    '<div id="ai-url-row"><div class="lbl">Адрес API (endpoint)</div>'+
+    '<input class="inp" id="ai-url" placeholder="https://api.openai.com/v1/chat/completions"></div>'+
+    '<div class="lbl">Модель</div>'+
+    '<input class="inp" id="ai-model" placeholder="gpt-4o-mini">'+
+    '<div class="lbl">API-ключ</div>'+
+    '<input class="inp" id="ai-key" type="password" placeholder="sk-… (или ключ Gemini)" autocomplete="off">'+
+    '<div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">'+
+      '<button class="btn blue" id="ai-save">💾 Сохранить настройки AI</button>'+
+      '<button class="btn green" id="ai-test">🧪 Проверить соединение</button></div>'+
+    '<div class="notice" style="margin-top:12px">⚠️ Если сайт размещён публично (например, GitHub Pages), НЕ вставляй ключ в код — каждый посетитель его увидит. Вводи ключ только сюда: он сохраняется лишь в твоём браузере.</div>'+
   '</div>'+
   '<div class="card" style="margin-top:16px">'+
     '<b style="font-family:var(--fd);font-size:15px">💾 Данные</b>'+
-    '<p class="mut" style="font-size:13px;font-weight:600;margin:8px 0 12px">Весь прогресс хранится в localStorage этого браузера. Сделай резервную копию, если хочешь перенести данные.</p>'+
+    '<p class="mut" style="font-size:13px;font-weight:600;margin:8px 0 12px">Весь прогресс хранится в localStorage этого браузера.</p>'+
     '<div style="display:flex;gap:10px;flex-wrap:wrap">'+
       '<button class="btn green" id="btn-exp">⬇️ Скачать резервную копию</button>'+
       '<button class="btn gold" id="btn-imp">⬆️ Загрузить копию</button>'+
       '<input type="file" id="imp-file" accept=".json" class="hidden"></div>'+
   '</div>'+
-  '<div class="notice" style="margin-top:14px">Приложение полностью бесплатное: без рекламы, подписок, лимитов и «жизней». Учитесь сколько угодно! 💚</div>';
+  '<div class="notice" style="margin-top:14px">Приложение полностью бесплатное: без рекламы, подписок, лимитов и «жизней». 💚</div>';
   $('#sw-theme').onclick=e=>{S.set.theme=S.set.theme==='dark'?'light':'dark';applyTheme();e.target.classList.toggle('on',S.set.theme==='dark');saveProgress();};
   $('#sw-sound').onclick=e=>{S.set.sound=!S.set.sound;e.target.classList.toggle('on',S.set.sound);saveProgress();if(S.set.sound)sfx('ok');};
+  $('#rg-vol').oninput=e=>{S.set.vol=+e.target.value;saveProgress();};
   $('#sel-rom').value=S.set.rom;$('#sel-rom').onchange=e=>{S.set.rom=e.target.value;saveProgress();};
   $('#rg-rate').oninput=e=>{S.set.rate=+e.target.value;saveProgress();};
-  $('#btn-tts').onclick=()=>{speakKorean('안녕하세요! 반갑습니다!');if(!koVoice)toast('Корейский голос в системе не найден — звук недоступен, но приложение работает','ℹ️');};
+  $('#tts-ko').onclick=()=>speak('안녕하세요! 반갑습니다!','ko-KR');
+  $('#tts-ja').onclick=()=>speak('こんにちは。はじめまして。','ja-JP');
+  $('#tts-en').onclick=()=>speak('Hello! Nice to meet you.','en-US');
+  /* AI настройки */
+  const prov=$('#ai-prov'),urlRow=$('#ai-url-row'),url=$('#ai-url'),model=$('#ai-model'),key=$('#ai-key');
+  prov.value=ai.provider;url.value=ai.url;model.value=ai.model;key.value=ai.key;
+  urlRow.style.display=ai.provider==='gemini'?'none':'';
+  prov.onchange=()=>{ai.provider=prov.value;
+    urlRow.style.display=ai.provider==='gemini'?'none':'';
+    if(ai.provider==='gemini'&&(!model.value||model.value==='gpt-4o-mini'))model.value='gemini-2.0-flash';
+    if(ai.provider==='openai'&&url.value.indexOf('openai.com')===-1&&url.value==='')url.value='https://api.openai.com/v1/chat/completions';};
+  $('#ai-save').onclick=()=>{ai.provider=prov.value;ai.url=url.value.trim()||'https://api.openai.com/v1/chat/completions';
+    ai.model=model.value.trim()||(ai.provider==='gemini'?'gemini-2.0-flash':'gpt-4o-mini');ai.key=key.value.trim();
+    saveProgress();toast('Настройки AI сохранены','✅');};
+  $('#ai-test').onclick=async()=>{
+    ai.provider=prov.value;ai.url=url.value.trim()||'https://api.openai.com/v1/chat/completions';
+    ai.model=model.value.trim()||(ai.provider==='gemini'?'gemini-2.0-flash':'gpt-4o-mini');ai.key=key.value.trim();saveProgress();
+    if(!ai.key){toast('Сначала вставь API-ключ','⚠️');return;}
+    const btn=$('#ai-test');btn.disabled=true;btn.textContent='⏳ Проверяю…';
+    try{const r=await aiComplete('Ответь ровно одним корейским словом: 안녕');
+      toast('AI работает! Ответ: '+r.slice(0,60),'✅');}
+    catch(e){toast('Ошибка AI: '+e.message,'⚠️');}
+    btn.disabled=false;btn.textContent='🧪 Проверить соединение';};
   $('#btn-exp').onclick=()=>{const b=new Blob([JSON.stringify(S)],{type:'application/json'});const a=document.createElement('a');
     a.href=URL.createObjectURL(b);a.download='annon-progress-'+S.name+'.json';a.click();toast('Копия сохранена','💾');};
   $('#btn-imp').onclick=()=>$('#imp-file').click();
   $('#imp-file').onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
     rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!d.st||!d.words)throw 0;
-      d.name=S.name;S=d;saveProgress();applyTheme();updateTop();toast('Прогресс восстановлен!','✅');showSettings();}
+      normalizeState(d);d.name=S.name;S=d;saveProgress();applyTheme();updateTop();toast('Прогресс восстановлен!','✅');showSettings();}
     catch(x){toast('Файл не подходит','⚠️');}};rd.readAsText(f);};}
 function resetProgress(){if(!confirm('Сбросить весь прогресс (XP, уроки, слова)? Профиль останется.'))return;
   const name=S.name;S=defaultState(name);saveProgress();updateTop();logout();}
@@ -1906,6 +2273,16 @@ function applyTheme(){document.documentElement.dataset.theme=S?S.set.theme:'ligh
   const fx=$('#fx');for(let i=0;i<14;i++){const s=document.createElement('span');s.textContent=g[i%g.length];
     s.style.left=Math.random()*100+'vw';s.style.fontSize=(30+Math.random()*80)+'px';
     s.style.animationDuration=(35+Math.random()*45)+'s';s.style.animationDelay=(-Math.random()*40)+'s';fx.appendChild(s);}})();
+
+/* ---------- слушатели AI-чата (один раз) ---------- */
+$('#ai-fab').onclick=()=>{sfx('click');openAIChat();};
+$('#ai-close').onclick=()=>$('#ai-panel').classList.add('hidden');
+$('#ai-clear').onclick=()=>{if(confirm('Очистить историю переписки с AI?')){ensureAI();S.aiHist=[];saveProgress();renderAIMsgs();}};
+$('#ai-send').onclick=sendAI;
+$('#ai-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendAI();});
+const AI_CHIPS=['Объясни частицу 은/는','Чем отличается 이/가 от 은/는?','Проспрягай глагол 가다','Дай 5 слов о еде','Устрой мне мини-тест'];
+$('#ai-chips').innerHTML=AI_CHIPS.map(c=>'<button class="ai-chip">'+esc(c)+'</button>').join('');
+$$('#ai-chips .ai-chip').forEach(b=>b.onclick=()=>{$('#ai-input').value=b.textContent;sendAI();});
 
 /* ---------- старт ---------- */
 function initApp(){
